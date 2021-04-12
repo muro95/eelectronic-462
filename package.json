@@ -1,10 +1,12 @@
 {
   "name": "ecom",
+  "type": "module",
   "version": "1.0.0",
   "description": "",
   "main": "server.js",
   "scripts": {
-    "start": "node backend/server.js",
+    "start": "nodemon --watch backend --exec node --experimental-modules backend/server.js",
+    "startl": "node backend/server.js",
     "dev":  "SET NODE_ENV=DEVELOPMENT& nodemon backend/server",
     "prod": "SET NODE_ENV=PRODUCTION& nodemon backend/server"
   },

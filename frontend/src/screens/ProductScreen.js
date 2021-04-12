@@ -13,7 +13,7 @@ export default function ProductScreen(props) {
             <Link to="/">Back to result</Link>
             <div className="row top">
                 <div className="col-2'">
-                    <img class="large" src={product.image} alt={product.name}></img>
+                    <img className="large" src={product.image} alt={product.name}></img>
                 </div>
                 <div className="col-1">
                     <ul>
@@ -33,7 +33,7 @@ export default function ProductScreen(props) {
                     </ul>
                 </div>
                 <div className="col-1">
-                    <div class="card card-body">
+                    <div className="card card-body">
                         <ul>
                             <li>
                                 <div className="row">
@@ -48,7 +48,7 @@ export default function ProductScreen(props) {
                                         {product.countInStock > 0 ? (
                                             <span className="success">In Stock</span>
                                         ) : (
-                                            <span className="error">Unavailable</span>
+                                            <span className="danger">Unavailable</span>
                                         )}
                                     </div>
                                 </div>
