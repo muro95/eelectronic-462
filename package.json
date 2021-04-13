@@ -7,7 +7,7 @@
   "scripts": {
     "start": "nodemon --watch backend --exec node --experimental-modules backend/server.js",
     "startl": "node backend/server.js",
-    "dev":  "SET NODE_ENV=DEVELOPMENT& nodemon backend/server",
+    "dev": "SET NODE_ENV=DEVELOPMENT& nodemon backend/server",
     "prod": "SET NODE_ENV=PRODUCTION& nodemon backend/server"
   },
   "author": "Alex Truong",
@@ -18,6 +18,8 @@
     "mongoose": "^5.12.3"
   },
   "devDependencies": {
+    "eslint": "^7.24.0",
+    "eslint-plugin-react": "^7.23.2",
     "nodemon": "^2.0.7"
   }
 }
