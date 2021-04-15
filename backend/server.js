@@ -1,9 +1,18 @@
 import express from 'express';
 import mongoose from 'mongoose';
+import dotenv from 'dotenv';
 import userRouter from './routers/userRouter.js';
 import productRouter from './routers/productRouter.js';
 
+//
+dotenv.config();
+
 const app = express();
+
+//pause the the body of http req, passing JSON data in the body of req
+app.use(express.json());
+app.use(express.urlencoded({ extended: true}));
+
 //make mongodb url parametric, have different value in different case
 mongoose.connect(process.env.MONGODB_URL || 'mongodb://localhost/eelectronic', {
     useNewUrlParser: true,
