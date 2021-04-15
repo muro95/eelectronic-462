@@ -17,7 +17,7 @@ const data = {
     ],
     products:[
         {
-            _id:'1',
+            
             name:'Eletronic Part',
             category:'Part',
             image:'/images/p1.jpg',
@@ -29,7 +29,7 @@ const data = {
             description: 'Good product',
         },
         {
-            _id:'2',
+            
             name:'Eletronic Part 2',
             category:'Part',
             image:'/images/p2.jpg',
@@ -41,7 +41,7 @@ const data = {
             description: 'Good product',
         },
         {
-            _id:'3',
+            
             name:'Eletronic Part 3',
             category:'Part',
             image:'/images/p1.jpg',
@@ -53,7 +53,7 @@ const data = {
             description: 'Good product',
         },
         {
-            _id:'4',
+          
             name:'Eletronic Part 4',
             category:'Part',
             image:'/images/p1.jpg',
@@ -65,7 +65,7 @@ const data = {
             description: 'Good product',
         },
         {
-            _id:'5',
+            
             name:'Eletronic Part 5',
             category:'Part',
             image:'/images/p1.jpg',
@@ -77,7 +77,7 @@ const data = {
             description: 'Good product',
         },
         {
-            _id:'6',
+            
             name:'Eletronic Part 6',
             category:'Part',
             image:'/images/p1.jpg',
