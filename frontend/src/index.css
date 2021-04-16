@@ -180,7 +180,7 @@ img.large{
   display: block !important;
 }
 .success {
-  color:#20a202;
+  color:#20a020;
 }
 .danger {
   color:#a02020;
@@ -196,7 +196,11 @@ img.large{
 }
 .alert-danger{
   color:#a02020;
-  background-color: #ffe0e0e0;
+  background-color: #ffe0e0;
+}
+.alert-success {
+  color:#20a020;
+  background-color: #eeffe0;
 }
 
 /* Form */
