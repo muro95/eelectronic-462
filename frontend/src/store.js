@@ -16,6 +16,10 @@ const initialState = {
         cartItems: localStorage.getItem('cartItems') 
         ? JSON.parse(localStorage.getItem('cartItems'))
         : [],
+        //if the info of shipping exist, we get the info from local storage 
+        shippingAddress: localStorage.getItem('shippingAddress')
+        ? JSON.parse(localStorage.getItem('shippingAddress'))
+        : {},
     },
 };
 const reducer = combineReducers({
