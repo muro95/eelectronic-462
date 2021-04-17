@@ -16,7 +16,7 @@ export default function HomeScreen() {
         /* send req to backend */
         dispatch(listProducts());
         /* this will help run only one time after rendering componenet */
-    }, []);
+    }, [dispatch]);
     return (
         <div>
             {loading ? (
