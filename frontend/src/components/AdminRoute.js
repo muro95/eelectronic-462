@@ -5,7 +5,7 @@ import { Redirect, Route } from 'react-router-dom';
 export default function AdminRoute({ component: Component, ...rest }) {
   const userSignin = useSelector((state) => state.userSignin);
   const { userInfo } = userSignin;
-  //private route that only render components if user signin
+  //private route that only render components if user is admin
   return (
     <Route
       {...rest}
