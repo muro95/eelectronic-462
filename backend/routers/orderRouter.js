@@ -1,9 +1,20 @@
 import express from 'express';
 import expressAsyncHandler from 'express-async-handler';
 import Order from '../models/orderModel.js';
-import { isAuth } from '../utils.js';
+import { isAdmin, isAuth } from '../utils.js';
 
 const orderRouter = express.Router();
+
+//API for list of order Admin view
+orderRouter.get(
+  '/',
+  isAuth,
+  isAdmin,
+  expressAsyncHandler(async (req, res) => {
+    const orders = await Order.find({}).populate('user', 'name');
+    res.send(orders);
+  })
+);
 
 //API return orders current user
 orderRouter.get('/mine', isAuth, expressAsyncHandler(async(req, res) => {
