@@ -37,9 +37,15 @@ app.get('/api/config/paypal', (req, res) => {
 //so when ever user go to /uploads. It will go to uploads folder 
 const __dirname = path.resolve();
 app.use('/uploads', express.static(path.join(__dirname, '/uploads')));
-app.get('/', (req, res) => {
-    res.send('Server is read');
-});
+//serve the file inside build folder of frontend 
+app.use(express.static(path.join(__dirname, '/frontend/build')));
+//serve the index.html inside build folder of frontend
+app.get('*', (req, res) =>
+  res.sendFile(path.join(__dirname, '/frontend/build/index.html'))
+);
+// app.get('/', (req, res) => {
+//     res.send('Server is read');
+// });
 
 app.use((err, req, res, next) => {
     res.status(500).send({ message:err.message });
