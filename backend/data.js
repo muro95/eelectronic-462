@@ -50,7 +50,7 @@ const data = {
             
             name:'Eletronic Part 3',
             category:'Part',
-            image:'/images/p1.jpg',
+            image:'/images/p3.jpg',
             price: 120,
             countInStock: 0,
             brand: 'Parasonic',
@@ -62,7 +62,7 @@ const data = {
           
             name:'Eletronic Part 4',
             category:'Part',
-            image:'/images/p1.jpg',
+            image:'/images/p4.jpg',
             price: 120,
             countInStock: 25,
             brand: 'Parasonic',
@@ -74,7 +74,7 @@ const data = {
             
             name:'Eletronic Part 5',
             category:'Part',
-            image:'/images/p1.jpg',
+            image:'/images/p5.jpg',
             price: 120,
             countInStock: 30,
             brand: 'Parasonic',
@@ -86,7 +86,7 @@ const data = {
             
             name:'Eletronic Part 6',
             category:'Part',
-            image:'/images/p1.jpg',
+            image:'/images/p6.jpg',
             price: 102,
             countInStock: 50,
             brand: 'Parasonic',
