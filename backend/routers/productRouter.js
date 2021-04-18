@@ -2,6 +2,7 @@ import express from 'express';
 import expressAsyncHandler from 'express-async-handler';
 import data from '../data.js';
 import Product from '../models/productModel.js';
+import { isAdmin, isAuth } from '../utils.js';
 
 const productRouter = express.Router();
 
@@ -27,5 +28,27 @@ productRouter.get('/:id', expressAsyncHandler(async(req, res) => {
         res.status(404).send({ message: 'Product Not Found'});
     }
 }));
+
+//create product API
+productRouter.post(
+    '/',
+    isAuth,
+    isAdmin,
+    expressAsyncHandler(async (req, res) => {
+      const product = new Product({
+        name: 'samle name ' + Date.now(),
+        image: '/images/p1.jpg',
+        price: 0,
+        category: 'sample cate',
+        brand: 'sample',
+        countInStock: 0,
+        rating: 0,
+        numReviews: 0,
+        description: 'sample desc',
+      });
+      const createdProduct = await product.save();
+      res.send({ message: 'Product Created', product: createdProduct });
+    })
+  );
 
 export default productRouter;

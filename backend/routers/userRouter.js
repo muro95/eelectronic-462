@@ -3,7 +3,7 @@ import expressAsyncHandler from 'express-async-handler';
 import bcrypt from 'bcryptjs';
 import data from '../data.js';
 import User from '../models/userModel.js';
-import { generateToken, isAuth } from './utils.js';
+import { generateToken, isAuth } from '../utils.js';
 
 
 //express.Router() help with code modular 
