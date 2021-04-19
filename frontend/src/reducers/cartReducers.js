@@ -19,7 +19,7 @@ export const cartReducer = (state = { cartItems: [] }, action) => {
                 };
             } else {
                 //adding new item to the cart, added item at the end of the cart
-                return { ...state, cartItems: [...state.cartItems, item]}; 
+                return { ...state, error: '',cartItems: [...state.cartItems, item]}; 
             }
         case CART_REMOVE_ITEM:
             return { 
