@@ -14,7 +14,7 @@ export default function HomeScreen() {
 
     useEffect(() =>{
         /* send req to backend */
-        dispatch(listProducts());
+        dispatch(listProducts({}));
         /* this will help run only one time after rendering componenet */
     }, [dispatch]);
     return (

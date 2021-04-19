@@ -25,6 +25,7 @@ userRouter.post('/signin', expressAsyncHandler(async(req, res) => {
                 name: user.name,
                 email: user.email,
                 isAdmin: user.isAdmin,
+                isSeller: user.isSeller,
                 token: generateToken(user),
             });
             return;
@@ -47,6 +48,7 @@ userRouter.post('/register',
         name: createdUser.name,
         email: createdUser.email,
         isAdmin: createdUser.isAdmin,
+        isSeller: user.isSeller,
         token: generateToken(createdUser),
     });
 })
@@ -74,6 +76,12 @@ userRouter.get(
       if (user) {
         user.name = req.body.name || user.name;
         user.email = req.body.email || user.email;
+        if (user.isSeller) {
+          user.seller.name = req.body.sellerName || user.seller.name;
+          user.seller.logo = req.body.sellerLogo || user.seller.logo;
+          user.seller.description =
+            req.body.sellerDescription || user.seller.description;
+        }
         if (req.body.password) {
           user.password = bcrypt.hashSync(req.body.password, 8);
         }
@@ -83,6 +91,7 @@ userRouter.get(
           name: updatedUser.name,
           email: updatedUser.email,
           isAdmin: updatedUser.isAdmin,
+          isSeller: user.isSeller,
           token: generateToken(updatedUser),
         });
       }
@@ -94,5 +103,24 @@ userRouter.get(
     const users = await User.find({});
     res.send(users);
   })
+  );
+
+  userRouter.put(
+    '/:id',
+    isAuth,
+    isAdmin,
+    expressAsyncHandler(async (req, res) => {
+      const user = await User.findById(req.params.id);
+      if (user) {
+        user.name = req.body.name || user.name;
+        user.email = req.body.email || user.email;
+        user.isSeller = req.body.isSeller === user.isSeller ? user.isSeller : req.body.isSeller;
+        user.isAdmin = req.body.isAdmin === user.isAdmin ? user.isAdmin : req.body.isAdmin;
+        const updatedUser = await user.save();
+        res.send({ message: 'User Updated', user: updatedUser });
+      } else {
+        res.status(404).send({ message: 'User Not Found' });
+      }
+    })
   );
 export default userRouter; 
