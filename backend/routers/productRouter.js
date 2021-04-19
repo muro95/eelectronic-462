@@ -10,8 +10,12 @@ const productRouter = express.Router();
 productRouter.get('/', expressAsyncHandler(async(req, res) => {
   //filter to show list of product to seller that owned 
   const seller = req.query.seller || '';
+  const name = req.query.name || '';
+
   const sellerFilter = seller ? { seller } : {};
-  const products = await Product.find({ ...sellerFilter }).populate(
+  //only the check the contain not the exact word 
+  const nameFilter = name ? { name: {$regex: name, $options: 'i'} } : {};
+  const products = await Product.find({ ...sellerFilter, ...nameFilter,}).populate(
     'seller', 'seller.name seller.logo');
   res.send(products);
 }));

@@ -18,14 +18,15 @@ import {
   
   } from "../constants/productConstants"
 
-export const listProducts = ({seller=''}) => async(dispatch) => {
+export const listProducts = ({seller='', name=''}) => async(dispatch) => {
     dispatch({
         //req object type 
         type: PRODUCT_LIST_REQUEST
     });
     //fetching data from backEnd
     try{
-        const { data } = await Axios.get(`/api/products?seller=${seller}`);
+      //read the input and pass to BE API 
+        const { data } = await Axios.get(`/api/products?seller=${seller}&name=${name}`);
         dispatch({type: PRODUCT_LIST_SUCCESS, payload: data});
     } catch(error){
         dispatch({type: PRODUCT_LIST_FAIL, payload: error.message});
