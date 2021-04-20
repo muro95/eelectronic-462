@@ -15,10 +15,13 @@ import {
     PRODUCT_DELETE_REQUEST,
     PRODUCT_DELETE_FAIL,
     PRODUCT_DELETE_SUCCESS,
+    PRODUCT_CATEGORY_LIST_SUCCESS,
+    PRODUCT_CATEGORY_LIST_REQUEST,
+    PRODUCT_CATEGORY_LIST_FAIL,
   
   } from "../constants/productConstants"
 
-export const listProducts = ({seller='', name=''}) => async(dispatch) => {
+export const listProducts = ({seller='', name='', category='',}) => async(dispatch) => {
     dispatch({
         //req object type 
         type: PRODUCT_LIST_REQUEST
@@ -26,7 +29,7 @@ export const listProducts = ({seller='', name=''}) => async(dispatch) => {
     //fetching data from backEnd
     try{
       //read the input and pass to BE API 
-        const { data } = await Axios.get(`/api/products?seller=${seller}&name=${name}`);
+        const { data } = await Axios.get(`/api/products?seller=${seller}&name=${name}&category=${category}`);
         dispatch({type: PRODUCT_LIST_SUCCESS, payload: data});
     } catch(error){
         dispatch({type: PRODUCT_LIST_FAIL, payload: error.message});
@@ -110,5 +113,17 @@ export const createProduct = () => async (dispatch, getState) => {
           ? error.response.data.message
           : error.message;
       dispatch({ type: PRODUCT_DELETE_FAIL, payload: message });
+    }
+  };
+
+  export const listProductCategories = () => async (dispatch) => {
+    dispatch({
+      type: PRODUCT_CATEGORY_LIST_REQUEST,
+    });
+    try {
+      const { data } = await Axios.get(`/api/products/categories`);
+      dispatch({ type: PRODUCT_CATEGORY_LIST_SUCCESS, payload: data });
+    } catch (error) {
+      dispatch({ type: PRODUCT_CATEGORY_LIST_FAIL, payload: error.message });
     }
   };

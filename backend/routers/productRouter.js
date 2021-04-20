@@ -11,15 +11,25 @@ productRouter.get('/', expressAsyncHandler(async(req, res) => {
   //filter to show list of product to seller that owned 
   const seller = req.query.seller || '';
   const name = req.query.name || '';
+  const category = req.query.category || '';
+
 
   const sellerFilter = seller ? { seller } : {};
   //only the check the contain not the exact word 
   const nameFilter = name ? { name: {$regex: name, $options: 'i'} } : {};
-  const products = await Product.find({ ...sellerFilter, ...nameFilter,}).populate(
+  const categoryFilter = category ? { category } : {};
+  const products = await Product.find({ ...sellerFilter, ...nameFilter, ...categoryFilter,}).populate(
     'seller', 'seller.name seller.logo');
   res.send(products);
 }));
-
+  //API to get Product Categories 
+  productRouter.get(
+    '/categories',
+    expressAsyncHandler(async (req, res) => {
+      const categories = await Product.find().distinct('category');
+      res.send(categories);
+    })
+  );
 //create product
 productRouter.get('/seed', expressAsyncHandler(async(req, res) => {
     const createdProducts = await Product.insertMany(data.products);
@@ -103,5 +113,7 @@ productRouter.put(
       }
     })
   );
+
+
 
 export default productRouter;
