@@ -40,9 +40,22 @@ productRouter.get('/', expressAsyncHandler(async(req, res) => {
   
 //create product using dummy data 
 productRouter.get('/seed', expressAsyncHandler(async(req, res) => {
-    const createdProducts = await Product.insertMany(data.products);
-    res.send({ createdProducts });
-}));
+    // await Product.remove({});
+    const seller = await User.findOne({ isSeller: true });
+    if (seller) {
+      const products = data.products.map((product) => ({
+        ...product,
+        seller: seller._id,
+      }));
+      const createdProducts = await Product.insertMany(products);
+      res.send({ createdProducts });
+    } else {
+      res
+        .status(500)
+        .send({ message: 'Need to create user data first. Run /api/users/seed' });
+    }
+  })
+);
 
 //returning product details
 productRouter.get('/:id', expressAsyncHandler(async(req, res) => {
