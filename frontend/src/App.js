@@ -27,6 +27,7 @@ import UserEditScreen from './screens/UserEditScreen';
 import UserListScreen from './screens/UserListScreen';
 import LoadingBox from './components/LoadingBox';
 import MessageBox from './components/MessageBox';
+import DashboardScreen from './screens/DashboardScreen';
 
 
 function App() {
@@ -187,6 +188,8 @@ function App() {
               <AdminRoute path="/orderlist" component={OrderListScreen} exact></AdminRoute>
               <AdminRoute path="/userlist" component={UserListScreen}></AdminRoute>
               <AdminRoute path="/user/:id/edit" component={UserEditScreen}></AdminRoute>
+              <AdminRoute path="/dashboard" component={DashboardScreen}></AdminRoute>
+
               <SellerRoute path="/productlist/seller" component={ProductListScreen}></SellerRoute>
               <SellerRoute path="/orderlist/seller" component={OrderListScreen}></SellerRoute>
 
