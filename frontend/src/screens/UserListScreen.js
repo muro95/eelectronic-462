@@ -51,7 +51,6 @@ export default function UserListScreen(props) {
                                         >
                                             Edit
                                         </button>
-                                        <button>Delete</button>
                                     </td>
                                  </tr>
                             ))}
