@@ -49,8 +49,7 @@ export default function OrderHistoryScreen(props) {
                         ))}
                     </tbody>
                 </table>
-            )
-            }
+            )}
         </div>
     );
 }
