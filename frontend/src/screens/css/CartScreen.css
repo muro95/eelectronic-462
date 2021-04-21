@@ -1,0 +1,154 @@
+body {
+    font-size: 12px;
+}
+
+hr {
+    color: #999999;
+    width: 100%;
+    box-sizing: content-box;
+    height: 0;
+    overflow: visible;
+    margin-bottom: 1rem;
+    margin-top: .5rem;
+    border: 0;
+    border-top: 1px solid rgba(0, 0, 0, .1);
+}
+
+#title {
+    font-size: 21px;
+}
+
+#my-cart {
+    margin-top: 2.5%;
+    margin-left: 10%;
+    width: 40%;
+    float: left;
+    margin-right: 5%;
+}
+
+.item-container {
+    display: grid;
+    grid-template-columns: auto 70px 70px 80px 80px;
+    grid-gap: 10px;
+    /* background-color: #2196F3; */
+    padding: 10px;
+}
+
+.item-container>div {
+    background-color: rgba(255, 255, 255, 0.8);
+    text-align: center;
+    padding: 20px 0;
+}
+
+.item-container>hr:nth-child(4n+1) {
+    grid-column: 1 / span 2;
+}
+
+.detail {
+    grid-column: 1 / span 2;
+}
+
+#detail-label {
+    grid-column: 1 / span 2;
+}
+
+.label {
+    font-size: 15px;
+    font-family: 'Lucida Sans'
+}
+
+.detail img {
+    margin-left: 5%;
+    margin-right: 5%;
+    float: left;
+}
+
+#order-summary {
+    margin-top: 4.5%;
+    margin-right: 10%;
+    float: right;
+    width: 325px;
+    padding: 1em;
+    border: 1px solid #CCC;
+    background-color: rgba(240, 240, 240, 0.8);
+}
+
+#id-label {
+    margin-top: 110px;
+}
+
+/* .description {
+    width: 100px;
+} */
+
+.description span:nth-of-type(1) {
+    font-family: 'Lucida Sans';
+    color: #999999;
+}
+
+#summary {
+    margin: 2.5%;
+    align-content: center;
+    align-items: center;
+}
+
+#order-summary-label {
+    font-size: 14px;
+}
+
+#summary .item {
+    font-size: 12px;
+}
+
+#item-label {
+    margin-bottom: 5px;
+}
+
+.item {
+    margin-bottom: 1px;
+    font-size: 12px;
+}
+
+.attr {
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+}
+
+.quantity-selector {
+    padding: 0.5rem;
+    border-radius: 0.5rem;
+    border: 0.1rem #a4a4a4 solid;
+    font-size: 12px;
+}
+
+
+#checkout {
+    padding-top: 15px;
+    text-align: center;
+    font-size: 19px;
+}
+
+@media only screen and (max-width: 1100px) {
+    #order-summary {
+        margin: auto;
+        border: 1px solid #CCC;
+        background-color: rgba(240, 240, 240, 0.8);
+        float: none;
+        min-width: 380px;
+    }
+
+    #my-cart {
+        width: 760px;
+        margin: auto;
+        float: none;
+    }
+}
+
+.float-right {
+    float: right;
+}
+
+.float-left {
+    float: left;
+}

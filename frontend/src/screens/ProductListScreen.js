@@ -12,45 +12,45 @@ export default function ProductListScreen(props) {
     const { loading, error, products } = productList;
     //getting data from product create in redux store 
     const productCreate = useSelector((state) => state.productCreate);
-  const {
-    loading: loadingCreate,
-    error: errorCreate,
-    success: successCreate,
-    product: createdProduct,
-  } = productCreate;
+    const {
+        loading: loadingCreate,
+        error: errorCreate,
+        success: successCreate,
+        product: createdProduct,
+    } = productCreate;
 
 
     const productDelete = useSelector((state) => state.productDelete);
     const {
-      loading: loadingDelete,
-      error: errorDelete,
-      success: successDelete,
+        loading: loadingDelete,
+        error: errorDelete,
+        success: successDelete,
     } = productDelete;
 
     const dispatch = useDispatch();
     useEffect(() => {
-        if(successCreate) {
-            dispatch({ type: PRODUCT_CREATE_RESET});
+        if (successCreate) {
+            dispatch({ type: PRODUCT_CREATE_RESET });
             props.history.push(`/product/${createdProduct._id}/edit`);
         }
-        if(successDelete) {
-            dispatch({ type: PRODUCT_DELETE_RESET});
+        if (successDelete) {
+            dispatch({ type: PRODUCT_DELETE_RESET });
         }
         dispatch(listProducts());
-    },[createdProduct, dispatch, props.history, successCreate, successDelete]);
+    }, [createdProduct, dispatch, props.history, successCreate, successDelete]);
 
     const deleteHandler = (product) => {
         if (window.confirm('Are you sure to delete?')) {
-          dispatch(deleteProduct(product._id));
+            dispatch(deleteProduct(product._id));
         }
-      };
+    };
     const createHandler = () => {
         dispatch(createProduct());
     };
     return (
         <div>
             <div className="row">
-                <h1>Products</h1>
+                <h1 class='three-rem-title'>Products</h1>
                 <button type="button" className="primary" onClick={createHandler}>
                     Create Product
                 </button>
@@ -62,42 +62,58 @@ export default function ProductListScreen(props) {
             {loading ? (
                 <LoadingBox></LoadingBox>
             ) : error ? (
-                <MessageBox variant ="danger">{error}</MessageBox>
+                <MessageBox variant="danger">{error}</MessageBox>
             ) : (
-            <table className="table">
-                <thead>
-                    <tr>
-                        <th>ID</th>
-                        <th>NAME</th>
-                        <th>PRICE</th>
-                        <th>CATEGORY</th>
-                        <th>BRAND</th>
-                        <th>ACTIONS</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    {products.map((product) => (
-                        <tr key = {product._id}>
-                            <td>{product._id}</td>
-                            <td>{product.name}</td>
-                            <td>{product.price}</td>
-                            <td>{product.category}</td>
-                            <td>{product.brand}</td>
-                            <td>
-                                <button type="button" className="small"
-                                onClick={() => props.history.push(`/product/${product._id}/edit`)}>
-                                    Edit
-                                </button>
-                                <button type="button" className="small"
-                                onClick={() => deleteHandler(product)}>
-                                    Delete
-                                </button>
-                            </td>
-                        </tr>
-                    ))}
-                </tbody>
-            </table>
-            )}
-        </div>
+                <div style={{ margin: "50px" }}>
+                    <table className="table float-left w-55 m-10">
+                        <thead>
+                            <tr>
+                                <th class='grid-label-purple'>ID</th>
+                                <th class='grid-label-purple'>NAME</th>
+                                <th class='grid-label-purple'>PRICE</th>
+                                <th class='grid-label-purple'>CATEGORY</th>
+                                <th class='grid-label-purple'>BRAND</th>
+                                <th class='grid-label-purple'>ACTIONS</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            {products.map((product) => (
+                                <tr key={product._id}>
+                                    <td>{product._id}</td>
+                                    <td>{product.name}</td>
+                                    <td>{product.price}</td>
+                                    <td>{product.category}</td>
+                                    <td>{product.brand}</td>
+                                    <td>
+                                        <div class='flex-center'>
+                                            <a type="button" className="small"
+                                                onClick={() => props.history.push(`/product/${product._id}/edit`)}>
+                                                <u>Edit</u>
+                                            </a>
+                                            <a type="button" className="small"
+                                                onClick={() => deleteHandler(product)}>
+                                                <u>Delete</u>
+                                            </a>
+                                        </div>
+                                    </td>
+                                </tr>
+                            ))}
+                        </tbody>
+                    </table>
+                    <div class='float-right' id='orderlist-info'>
+                        <div id='tip-label'><strong>Delete</strong></div>
+                        <br></br>
+                        <div class='tip-text'>Once deleted the item will be removed peramntly. The action can not be reverted.</div>
+                        <br></br>
+                        <br></br>
+                        <br></br>
+                        <div id='tip-label'><strong>Edit</strong></div>
+                        <br></br>
+                        <div class='tip-text'>Once the item is edited, changes will be take palce immediately within 5 minutes.</div>
+                    </div>
+                </div>
+            )
+            }
+        </div >
     )
 }

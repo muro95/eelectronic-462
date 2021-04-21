@@ -9,28 +9,28 @@ import MessageBox from '../components/MessageBox';
 
 export default function PlaceOrderScreen(props) {
     const cart = useSelector(state => state.cart);
-    if(!cart.paymentMethod){
+    if (!cart.paymentMethod) {
         props.history.push('/payment');
     }
     const orderCreate = useSelector(state => state.orderCreate);
     const { loading, success, error, order } = orderCreate;
     //round to 2 digit after decimal point 
-    const toPrice = (num) => Number(num.toFixed(2)); 
+    const toPrice = (num) => Number(num.toFixed(2));
     cart.itemsPrice = toPrice(cart.cartItems.reduce((a, c) => a + c.qty * c.price, 0));
-    cart.shippingPrice = cart.itemsPrice > 100? toPrice(0) : toPrice(10);
+    cart.shippingPrice = cart.itemsPrice > 100 ? toPrice(0) : toPrice(10);
     cart.taxPrice = toPrice(0.15 * cart.itemsPrice)
     cart.totalPrice = cart.itemsPrice + cart.shippingPrice + cart.taxPrice;
     const dispatch = useDispatch();
     const placeOrderHandler = () => {
         //use alluse all fields of card object and replaced card item with order item
-        dispatch(createOrder({...cart, orderItems: cart.cartItems}));
+        dispatch(createOrder({ ...cart, orderItems: cart.cartItems }));
     }
     useEffect(() => {
-        if(success) {
+        if (success) {
             props.history.push(`/order/${order._id}`);
-            dispatch({ type: ORDER_CREATE_RESET});
+            dispatch({ type: ORDER_CREATE_RESET });
         }
-    }, [ dispatch, order, props.history, success]);
+    }, [dispatch, order, props.history, success]);
     return (
         <div>
             <CheckoutSteps step1 step2 step3 step4></CheckoutSteps>
@@ -61,31 +61,31 @@ export default function PlaceOrderScreen(props) {
                             <div className="card card-body">
                                 <h2>Order Items</h2>
                                 <ul>
-                        {
-                            cart.cartItems.map((item) => (
-                                <li key={item.product}>
-                                    <div className="row">
-                                        <div>
-                                            <img 
-                                            src={item.image} 
-                                            alt={item.name} 
-                                            className="small"
-                                            ></img>
-                                        </div>
-                                        <div className="min-30">
-                                            <Link to={`/product/${item.product}`}>{item.name}</Link>
-                                        </div>
-                                        
-                                        <div>{item.qty} x ${item.price} = ${item.qty * item.price}</div>
-                                        
-                                    </div>
-                                    </li>
-                                    ))}
+                                    {
+                                        cart.cartItems.map((item) => (
+                                            <li key={item.product}>
+                                                <div className="row">
+                                                    <div>
+                                                        <img
+                                                            src={item.image}
+                                                            alt={item.name}
+                                                            className="small"
+                                                        ></img>
+                                                    </div>
+                                                    <div className="min-30">
+                                                        <Link to={`/product/${item.product}`}>{item.name}</Link>
+                                                    </div>
+
+                                                    <div>{item.qty} x ${item.price} = ${item.qty * item.price}</div>
+
+                                                </div>
+                                            </li>
+                                        ))}
                                 </ul>
                             </div>
                         </li>
                     </ul>
-                    
+
                 </div>
                 <div className="col-1">
                     <div className="card card-body">
@@ -116,14 +116,14 @@ export default function PlaceOrderScreen(props) {
                                     <div><strong>Order Total</strong></div>
                                     <div>
                                         <strong>
-                                        ${cart.totalPrice.toFixed(2)}
+                                            ${cart.totalPrice.toFixed(2)}
                                         </strong>
                                     </div>
                                 </div>
                             </li>
                             <li>
-                                <button 
-                                    type="button" 
+                                <button
+                                    type="button"
                                     onClick={placeOrderHandler}
                                     className="primary block"
                                     disabled={cart.cartItems.length === 0}

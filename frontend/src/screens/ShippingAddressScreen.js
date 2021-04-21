@@ -10,7 +10,7 @@ export default function ShippingAddressScreen(props) {
     //get the address that we got from the user
     const cart = useSelector((state) => state.cart);
     const { shippingAddress } = cart;
-    if(!userInfo){
+    if (!userInfo) {
         props.history.push('/signin');
     }
     const [fullName, setFullName] = useState(shippingAddress.fullName);
@@ -22,11 +22,11 @@ export default function ShippingAddressScreen(props) {
 
     const submitHandler = (e) => {
         e.preventDefault();
-        dispatch(saveShippingAddress({fullName, address, city, postalCode, country})
+        dispatch(saveShippingAddress({ fullName, address, city, postalCode, country })
         );
         props.history.push('/payment');
     };
-    
+
 
     return (
         <div>
@@ -36,56 +36,56 @@ export default function ShippingAddressScreen(props) {
                     <h1>Shipping Address</h1>
                 </div>
                 <div>
-                    <label htmlFor="fullName">Full Name</label>
-                    <input 
-                        type="text" 
-                        id="fullName" 
-                        placeholder="Enter full name" 
-                        value={fullName} 
+                    <label htmlFor="fullName"><strong>Full Name</strong></label>
+                    <input
+                        type="text"
+                        id="fullName"
+                        placeholder="Enter full name"
+                        value={fullName}
                         onChange={(e) => setFullName(e.target.value)}
                         required
                     ></input>
                 </div>
                 <div>
-                    <label htmlFor="address">Address</label>
-                    <input 
-                        type="text" 
-                        id="address" 
-                        placeholder="Enter address" 
-                        value={address} 
+                    <label htmlFor="address"><strong>Address</strong></label>
+                    <input
+                        type="text"
+                        id="address"
+                        placeholder="Enter address"
+                        value={address}
                         onChange={(e) => setAddress(e.target.value)}
                         required
                     ></input>
                 </div>
                 <div>
-                    <label htmlFor="city">City</label>
-                    <input 
-                        type="text" 
-                        id="city" 
-                        placeholder="Enter city" 
-                        value={city} 
+                    <label htmlFor="city"><strong>City</strong></label>
+                    <input
+                        type="text"
+                        id="city"
+                        placeholder="Enter city"
+                        value={city}
                         onChange={(e) => setCity(e.target.value)}
                         required
                     ></input>
                 </div>
                 <div>
-                    <label htmlFor="postalCode">Postal Code</label>
-                    <input 
-                        type="text" 
-                        id="postalCode" 
-                        placeholder="Enter postalCode" 
-                        value={postalCode} 
+                    <label htmlFor="postalCode"><strong>Postal Code</strong></label>
+                    <input
+                        type="text"
+                        id="postalCode"
+                        placeholder="Enter postalCode"
+                        value={postalCode}
                         onChange={(e) => setPostalCode(e.target.value)}
                         required
                     ></input>
                 </div>
                 <div>
-                    <label htmlFor="country">Country</label>
-                    <input 
-                        type="text" 
-                        id="country" 
-                        placeholder="Enter country" 
-                        value={country} 
+                    <label htmlFor="country"><strong>Country</strong></label>
+                    <input
+                        type="text"
+                        id="country"
+                        placeholder="Enter country"
+                        value={country}
                         onChange={(e) => setCountry(e.target.value)}
                         required
                     ></input>
@@ -98,6 +98,6 @@ export default function ShippingAddressScreen(props) {
                 </div>
             </form>
         </div>
-        
+
     );
 }
