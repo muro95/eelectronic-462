@@ -1,0 +1,95 @@
+#product-image {
+    padding: 50px 0px 50px;
+    width: 400px;
+    height: 500px;
+}
+
+#main-panel {
+    margin-top: 5%;
+    margin-left: 10%;
+    margin-right: 10%;
+}
+
+#left-panel {
+    float: left;
+}
+
+#right-panel {
+    float: left;
+    margin-left: 5%;
+    font-size: 15.5px;
+    min-width: 550px;
+    font-family: 'initial';
+}
+
+#right-panel th {
+    text-align: left;
+}
+
+#right-panel table {
+    width: 100%;
+}
+
+#hr-divider {
+    height: 4px;
+    background-color: black;
+    width: 30%;
+    float: left;
+}
+
+#product-name {
+    font-size: 25px;
+}
+
+#add-to-cart-btn {
+    width: 100%;
+    border: 2px solid silver;
+    background-color: white;
+    font-size: 17.5px;
+    font-family: 'emoji';
+    font-weight: bold;
+}
+
+#add-to-cart-btn:hover {
+    background-color: rgb(221, 221, 221);
+}
+
+#right-panel .label {
+    font-size: 17.5px;
+    font-family: 'emoji';
+    font-weight: bold;
+}
+
+#right-panel .label select {
+    font-size: 17.5px;
+    font-family: 'emoji';
+    font-weight: bold;
+    cursor: pointer;
+}
+
+
+#right-panel tr select {
+    font-size: 17.5px;
+    font-family: auto;
+}
+
+@media only screen and (max-width: 1300px) {
+    #main-panel {
+        float: none;
+        margin: none;
+    }
+
+    #right-panel {
+        float: none;
+        margin-left: 10%;
+        width: 80%;
+
+    }
+
+    #left-panel {
+        align-items: center;
+        text-align: center;
+        float: none;
+        margin: none;
+    }
+}
