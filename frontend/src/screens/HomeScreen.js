@@ -19,6 +19,8 @@ export default function HomeScreen() {
     }, [dispatch]);
     return (
         <div>
+            <h2>Logos</h2>
+            <h2>Featured Products</h2>
             {loading ? (
                 <LoadingBox></LoadingBox>
             ) : error ? (

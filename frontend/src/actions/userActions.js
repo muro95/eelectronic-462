@@ -103,13 +103,13 @@ export const detailsUser = (userId) => async (dispatch, getState) => {
     }
   };
 
-  export const listUsers = () => async (dispatch, getState) => {
+  export const listUsers = ({pageNumber = ''}) => async (dispatch, getState) => {
     dispatch({ type: USER_LIST_REQUEST });
     try {
       const {
         userSignin: { userInfo },
       } = getState();
-      const { data } = await Axios.get('/api/users', {
+      const { data } = await Axios.get(`/api/users?pageNumber=${pageNumber}`, {
         headers: {
           Authorization: `Bearer ${userInfo.token}`,
         },

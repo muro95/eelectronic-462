@@ -1,16 +1,19 @@
 import React, { useEffect } from 'react'
 import { useDispatch, useSelector } from 'react-redux';
+import { useParams } from 'react-router';
+import { Link } from 'react-router-dom';
 import { listOrderMine } from '../actions/orderActions';
 import LoadingBox from '../components/LoadingBox';
 import MessageBox from '../components/MessageBox';
 
 export default function OrderHistoryScreen(props) {
+    const {pageNumber = 1,} = useParams();
     const orderMineList = useSelector(state => state.orderMineList);
-    const { loading, error, orders } = orderMineList;
+    const { loading, error, orders, page, pages } = orderMineList;
     const dispatch = useDispatch();
     useEffect(()=> {
-        dispatch(listOrderMine());
-    }, [dispatch]);
+        dispatch(listOrderMine({pageNumber }));
+    }, [dispatch, pageNumber]);
     return (
         <div>
             <h1> Order History </h1>
@@ -18,6 +21,7 @@ export default function OrderHistoryScreen(props) {
             error ? <MessageBox variant ="danger">{error}</MessageBox>
             :
             (
+                <>
                 <table className="table">
                     <thead>
                         <tr>
@@ -49,6 +53,14 @@ export default function OrderHistoryScreen(props) {
                         ))}
                     </tbody>
                 </table>
+                <div className="row center pagination">
+                {
+                    [...Array(pages).keys()].map(x => (
+                        <Link className={x +1 === page? 'active' : ''} key={x + 1} to={`/orderlist/pageNumber/${x + 1}`}>{x+1}</Link>
+                    ))
+                }
+            </div>
+            </>
             )}
         </div>
     );

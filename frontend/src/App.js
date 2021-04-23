@@ -106,10 +106,10 @@ function App() {
                      </Link>
                      <ul className="dropdown-content">
                        <li>
-                         <Link to="/productlist/seller">Products</Link>
+                         <Link to="/productlist/seller/:isSeller/pageNumber/:pageNumber">Products</Link>
                        </li>
                        <li>
-                         <Link to="/orderlist/seller">Orders</Link>
+                         <Link to="/orderlist/seller/:isSeller/pageNumber/:pageNumber">Orders</Link>
                         </li>
                      </ul>
                    </div>
@@ -182,6 +182,8 @@ function App() {
               <Route path="/placeorder" component={PlaceOrderScreen}></Route>
               <Route path="/order/:id" component={OrderScreen}></Route>
               <Route path="/orderhistory" component={OrderHistoryScreen}></Route>
+              <Route path="/orderhistory/pageNumber/:pageNumber" component={OrderHistoryScreen}></Route>
+
               <Route path="/search/name/:name?" component={SearchScreen}exact></Route>
               <Route path="/search/category/:category" component={SearchScreen}exact></Route>
               <Route path="/search/category/:category/name/:name" component={SearchScreen}exact></Route>
@@ -191,14 +193,21 @@ function App() {
               <AdminRoute path="/productlist/pageNumber/:pageNumber" component={ProductListScreen} exact></AdminRoute>
 
               <AdminRoute path="/orderlist" component={OrderListScreen} exact></AdminRoute>
-              <AdminRoute path="/userlist" component={UserListScreen}></AdminRoute>
+              <AdminRoute path="/orderlist/pageNumber/:pageNumber" component={OrderListScreen} exact></AdminRoute>
+
+              <AdminRoute path="/userlist" component={UserListScreen} exact></AdminRoute>
+              <AdminRoute path="/userlist/pageNumber/:pageNumber" component={UserListScreen} exact></AdminRoute>
               <AdminRoute path="/user/:id/edit" component={UserEditScreen}></AdminRoute>
               <AdminRoute path="/dashboard" component={DashboardScreen}></AdminRoute>
               <AdminRoute path="/support" component={CustomerSupportScreen}></AdminRoute>
 
 
-              <SellerRoute path="/productlist/seller" component={ProductListScreen}></SellerRoute>
-              <SellerRoute path="/orderlist/seller" component={OrderListScreen}></SellerRoute>
+              <SellerRoute path="/productlist/seller" component={ProductListScreen} exact></SellerRoute>
+              <SellerRoute path="/productlist/seller/:isSeller/pageNumber/:pageNumber" component={ProductListScreen} exact></SellerRoute>
+
+              <SellerRoute path="/orderlist/seller" component={OrderListScreen} exact></SellerRoute>
+              <SellerRoute path="/orderlist/seller/:isSeller/pageNumber/:pageNumber" component={OrderListScreen} exact></SellerRoute>
+
 
               <Route path="/" component={HomeScreen} exact></Route>
               

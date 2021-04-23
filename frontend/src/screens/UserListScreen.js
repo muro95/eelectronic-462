@@ -1,5 +1,6 @@
 import React, { useEffect } from 'react'
 import { useDispatch, useSelector } from 'react-redux';
+import { Link, useParams } from 'react-router-dom';
 import { listUsers } from '../actions/userActions';
 import LoadingBox from '../components/LoadingBox'
 import MessageBox from '../components/MessageBox';
@@ -7,15 +8,16 @@ import { USER_DETAILS_RESET } from '../constants/userConstants';
 
 
 export default function UserListScreen(props) {
+    const { pageNumber = 1} = useParams();
     const userList = useSelector(state => state.userList);
-    const { loading, error, users} = userList;
+    const { loading, error, users, page, pages} = userList;
     const dispatch = useDispatch();
     useEffect(() => {
-        dispatch(listUsers());
+        dispatch(listUsers(pageNumber));
         dispatch({
             type: USER_DETAILS_RESET,
           });
-    }, [dispatch]);
+    }, [dispatch, pageNumber]);
     return (
         <div>
             <h1>Users</h1>
@@ -24,6 +26,7 @@ export default function UserListScreen(props) {
                 : error ? (
                     <MessageBox variant="danger">{error}</MessageBox>
                 ) : (
+                    <>
                     <table className="table">
                         <thead>
                             <tr>
@@ -56,6 +59,14 @@ export default function UserListScreen(props) {
                             ))}
                         </tbody>
                     </table>
+                    <div className="row center pagination">
+                    {
+                        [...Array(pages).keys()].map(x => (
+                            <Link className={x +1 === page? 'active' : ''} key={x + 1} to={`/userlist/pageNumber/${x + 1}`}>{x+1}</Link>
+                        ))
+                    }
+                </div>
+                </>
                 )}
         </div>
     );

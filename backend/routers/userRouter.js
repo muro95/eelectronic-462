@@ -100,8 +100,11 @@ userRouter.get(
 
   //API to list User for Admin view
   userRouter.get('/', isAuth, isAdmin, expressAsyncHandler(async(req, res) => {
+    const pageSize = 6;
+    const page = Number(req.query.pageNumber) || 1;
+    const count = await User.find({}).skip(pageSize*(page-1)).limit(pageSize);
     const users = await User.find({});
-    res.send(users);
+    res.send({users, page, pages: Math.ceil(count/pageSize)});
   })
   );
 

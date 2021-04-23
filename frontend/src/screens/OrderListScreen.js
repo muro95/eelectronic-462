@@ -1,5 +1,7 @@
 import React, { useEffect } from 'react'
 import { useDispatch, useSelector } from 'react-redux';
+import { useParams } from 'react-router';
+import { Link } from 'react-router-dom';
 import { deleteOrder, listOrders } from '../actions/orderActions';
 import LoadingBox from '../components/LoadingBox';
 import MessageBox from '../components/MessageBox';
@@ -7,9 +9,10 @@ import { ORDER_DELETE_RESET } from '../constants/orderConstants'
 
 
 export default function OrderListScreen(props) {
+    const { pageNumber = 1} = useParams();
     const sellerMode = props.match.path.indexOf('/seller') >= 0;
     const orderList = useSelector(state => state.orderList);
-    const { loading, error, orders } = orderList;
+    const { loading, error, orders, page, pages } = orderList;
     const orderDelete = useSelector((state) => state.orderDelete);
   const {
     loading: loadingDelete,
@@ -22,8 +25,8 @@ export default function OrderListScreen(props) {
     const dispatch = useDispatch();
     useEffect(() => {  
         dispatch({type: ORDER_DELETE_RESET});
-        dispatch(listOrders({ seller: sellerMode ? userInfo._id : '' }));
-    }, [dispatch, successDelete, sellerMode, userInfo._id]);
+        dispatch(listOrders({ seller: sellerMode ? userInfo._id : '', pageNumber }));
+    }, [dispatch, successDelete, sellerMode, userInfo._id, pageNumber]);
 
 const deleteHandler = (order) => {
     if(window.confirm('Are you sure to delete?')){
@@ -40,6 +43,7 @@ const deleteHandler = (order) => {
             ) : error ? (
                 <MessageBox variant ="danger">{error}</MessageBox>
             ) : (
+                <>
                 <table className="table">
                     <thead>
                         <tr>
@@ -75,6 +79,21 @@ const deleteHandler = (order) => {
                         ))}
                     </tbody>
                 </table>
+                <div className="row center pagination">
+                {
+                    [...Array(pages).keys()].map(x => (
+                        <Link className={x +1 === page? 'active' : ''} key={x + 1} 
+                            to={ sellerMode ? (
+                                `/orderlist/seller/${userInfo.isSeller}/pageNumber/${x + 1}`
+                            ) : (
+                                `/orderlist/pageNumber/${x + 1}`)
+                            }
+                        >{x+1}
+                        </Link>
+                    ))
+                }
+            </div>
+            </>
             )}
         </div>
     );

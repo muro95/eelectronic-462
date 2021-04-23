@@ -13,14 +13,16 @@ orderRouter.get(
   isAuth,
   isSellerOrAdmin,
   expressAsyncHandler(async (req, res) => {
+    const pageSize = 6;
+    const page = Number(req.query.pageNumber) || 1;
     const seller = req.query.seller || '';
     const sellerFilter = seller ? { seller } : {};
-
+    const count = await Order.count({ ...sellerFilter });
     const orders = await Order.find({ ...sellerFilter }).populate(
       'user',
       'name'
-    );
-    res.send(orders);
+    ).skip(pageSize*(page-1)).limit(pageSize);
+    res.send({orders, page, pages: Math.ceil(count /pageSize)});
   })
 );
 
@@ -71,10 +73,14 @@ orderRouter.get(
 
 //API return orders current user
 orderRouter.get('/mine', isAuth, expressAsyncHandler(async(req, res) => {
-  const orders = await Order.find({user: req.user._id});
-  res.send(orders);
+  const pageSize = 6;
+  const page = Number(req.query.pageNumber) || 1;
+  const count = await Order.find({user: req.user._id,});
+  const orders = await Order.find({user: req.user._id}).skip(pageSize*(page-1)).limit(pageSize);
+  res.send({orders, page, pages: Math.ceil(count/pageSize)});
 })
 );
+
 orderRouter.post('/', isAuth, expressAsyncHandler(async(req, res) => {
     if(req.body.orderItems.length === 0){
         res.status(400).send({ message: 'Cart is empty'});
