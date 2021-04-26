@@ -109,7 +109,6 @@ export default function CustomerSupportScreen() {
       }, 1000);
     }
   };
-
   return (
     <div className="row top full-container">
       <div className="col-1 support-users">
@@ -140,7 +139,7 @@ export default function CustomerSupportScreen() {
             ))}
         </ul>
       </div>
-      <div className="col-3 support-messages">
+      <div className="col-3 support-messages" style={{ 'border-left': '1px solid silver' }}>
         {!selectedUser._id ? (
           <MessageBox>Select a user to start chat</MessageBox>
         ) : (

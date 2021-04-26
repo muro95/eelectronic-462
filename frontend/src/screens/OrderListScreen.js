@@ -36,7 +36,7 @@ export default function OrderListScreen(props) {
     };
     return (
         <div style={{ margin: "50px" }}>
-            <h1 class="three-rem-title"> Orders </h1>
+            <h1 className="three-rem-title"> Orders </h1>
             {loadingDelete && <LoadingBox></LoadingBox>}
             {errorDelete && <MessageBox variant="danger">{errorDelete}</MessageBox>}
             {loading ? (
@@ -49,14 +49,14 @@ export default function OrderListScreen(props) {
                         <table className="table">
                             <thead>
                                 <tr>
-                                    <th class='grid-label-purple'>ID</th>
-                                    <th class='grid-label-purple'>ITEMS</th>
-                                    <th class='grid-label-purple'>USER</th>
-                                    <th class='grid-label-purple'>DATE</th>
-                                    <th class='grid-label-purple'>TOTAL</th>
-                                    <th class='grid-label-purple'>PAID</th>
-                                    <th class='grid-label-purple'>DELIVERED</th>
-                                    <th class='grid-label-purple'>ACTION</th>
+                                    <th className='grid-label-purple'>ID</th>
+                                    <th className='grid-label-purple'>ITEMS</th>
+                                    <th className='grid-label-purple'>USER</th>
+                                    <th className='grid-label-purple'>DATE</th>
+                                    <th className='grid-label-purple'>TOTAL</th>
+                                    <th className='grid-label-purple'>PAID</th>
+                                    <th className='grid-label-purple'>DELIVERED</th>
+                                    <th className='grid-label-purple'>ACTION</th>
                                 </tr>
                             </thead>
                             <tbody>
@@ -76,7 +76,7 @@ export default function OrderListScreen(props) {
                                         <td>{order.isPaid ? order.paidAt.substring(0, 10) : 'No'}</td>
                                         <td>{order.isDelivered ? order.deliveredAt.substring(0, 10) : 'No'}</td>
                                         <td>
-                                            <div class='flex-center'>
+                                            <div className='flex-center'>
                                                 <a type="button" className="small"
                                                     onClick={() => {
                                                         props.history.push(`/order/${order._id}`);
@@ -107,10 +107,10 @@ export default function OrderListScreen(props) {
                             }
                         </div>
                     </div>
-                    <div class='float-right' className='info-right'>
+                    <div className='float-right' className='info-right'>
                         <div id='tip-label'><strong>Delete</strong></div>
                         <br></br>
-                        <div class='tip-text'>Once deleted the item will be removed peramntly. There is no guarenteed that the item will be avalible again.</div>
+                        <div className='tip-text'>Once deleted the item will be removed peramntly. There is no guarenteed that the item will be avalible again.</div>
                     </div>
                 </>
             )}

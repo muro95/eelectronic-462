@@ -1,0 +1,44 @@
+#home-bg {
+    background-image: url('../../img/homebg.png');
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+    opacity: 0.95;
+    height: 900px;
+}
+
+.center {
+    text-align: center;
+}
+
+.azure {
+    color: azure;
+}
+
+#greet {
+    font-size: 23px;
+    padding-top: 5%;
+    padding-left: 15%;
+    color: azure;
+}
+
+#greet2 {
+    font-size: 21px;
+    padding-top: 15%;
+    padding-bottom: 15%;
+}
+
+#featured-products {
+    margin-top: 5%;
+    margin-left: 20%;
+    font-size: 22px;
+    margin-right: 20%;
+}
+
+.search:hover #search-input-text {
+    width: 500px;
+}
+
+/* #search-input-text {
+    display: block;
+} */

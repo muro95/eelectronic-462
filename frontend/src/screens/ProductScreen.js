@@ -30,15 +30,6 @@ export default function ProductScreen(props) {
         window.location.href = '/signin';
     }
     let reviewCount = [0, 0, 0, 0, 0];
-    // console.log(product.reviews)
-    // product.reviews.forEach(review => {
-    //     console.log('asd')
-    //     // reviewCount[review.rating] += 1;
-    // });
-    // product.reviews.map((review) => (
-    //     reviewCount[review.rating] += 1;
-    // ))
-
     useEffect(() => {
         if (successReviewCreate) {
             window.alert('Review Submitted Successfully');
@@ -166,8 +157,8 @@ export default function ProductScreen(props) {
                                     </tr>
                                     <tr><hr id='hr-divider'></hr></tr>
                                     <br></br>
-                                    <tr class='label'>
-                                        <strong>${product.price}</strong>
+                                    <tr className='label'>
+                                        <strong>${product.price.toFixed(2)}</strong>
                                     </tr>
                                     <br></br>
                                     <tr>
@@ -194,7 +185,7 @@ export default function ProductScreen(props) {
                                                     </select>
                                                 </tr>
                                                 <br></br>
-                                                <tr class='label'>
+                                                <tr className='label'>
                                                     <button onClick={addToCartHandler} className="primary block" id='add-to-cart-btn'>Add to Cart</button>
                                                 </tr>
                                             </>
@@ -209,7 +200,7 @@ export default function ProductScreen(props) {
                                                     </select>
                                                 </tr>
                                                 <br></br>
-                                                <tr class='label'>
+                                                <tr className='label'>
                                                     <button className="primary block" disabled id='add-to-cart-btn'>Out of Stock</button>
                                                 </tr>
                                             </>
@@ -242,9 +233,9 @@ export default function ProductScreen(props) {
                                 <div style={{ 'margin-left': '400px' }}>
                                     {product.reviews.map((review) => (
                                         <li key={review._id} className='review'>
-                                            <span><strong className='review-name'>{review.name}</strong><Rating rating={review.rating} caption=" " class='flaot-left'></Rating></span>
+                                            <span><strong className='review-name'>{review.name}</strong><Rating rating={review.rating} caption=" " className='flaot-left'></Rating></span>
                                             <br></br>
-                                            <p className='review-time'>Review on {review.createdAt.substring(0, 10)}</p>
+                                            <p className='review-time'>Reviewed on {review.createdAt.substring(0, 10)}</p>
                                             <p className='review-body'>{review.comment}</p>
                                             <br></br>
                                             <hr></hr>
@@ -311,9 +302,6 @@ export default function ProductScreen(props) {
                                                     )}
                                                 </div>
                                             </form>
-                                            // <MessageBox>
-                                            //     Please <Link to="/signin">Sign In</Link> to write a review
-                                            // </MessageBox>
                                         )}
                                     </li>
                                 </div>

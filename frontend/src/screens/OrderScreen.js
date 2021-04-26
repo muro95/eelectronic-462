@@ -9,7 +9,7 @@ import MessageBox from '../components/MessageBox';
 import { ORDER_DELIVER_RESET, ORDER_PAY_RESET } from '../constants/orderConstants';
 
 export default function OrderScreen(props) {
-    const orderId = props.match.params.id;    
+    const orderId = props.match.params.id;
     const [sdkReady, setSdkReady] = useState(false);
     const orderDetails = useSelector((state) => state.orderDetails);
     const { order, loading, error } = orderDetails;
@@ -21,12 +21,12 @@ export default function OrderScreen(props) {
     const { loading: loadingPay, error: errorPay, success: successPay } = orderPay;
     const orderDeliver = useSelector((state) => state.orderDeliver);
     const {
-    loading: loadingDeliver,
-    error: errorDeliver,
-    success: successDeliver,
+        loading: loadingDeliver,
+        error: errorDeliver,
+        success: successDeliver,
     } = orderDeliver;
     const dispatch = useDispatch();
-   
+
     useEffect(() => {
         const addPayPalScript = async () => {
             const { data } = await Axios.get('/api/config/paypal');
@@ -35,24 +35,24 @@ export default function OrderScreen(props) {
             script.src = `https://www.paypal.com/sdk/js?client-id=${data}`;
             script.async = true;
             script.onload = () => {
-              setSdkReady(true);
+                setSdkReady(true);
             };
             document.body.appendChild(script);
-          };
-          if (!order || successPay || successDeliver || (order && order._id !== orderId)) {
+        };
+        if (!order || successPay || successDeliver || (order && order._id !== orderId)) {
             dispatch({ type: ORDER_PAY_RESET });
             dispatch({ type: ORDER_DELIVER_RESET });
             dispatch(detailsOrder(orderId));
-          } else {
+        } else {
             if (!order.isPaid) {
-              if (!window.paypal) {
-                addPayPalScript();
-              } else {
-                setSdkReady(true);
-              }
+                if (!window.paypal) {
+                    addPayPalScript();
+                } else {
+                    setSdkReady(true);
+                }
             }
-          }
-        }, [dispatch, order, orderId, sdkReady, successPay, successDeliver]);
+        }
+    }, [dispatch, order, orderId, sdkReady, successPay, successDeliver]);
 
     const successPaymentHandler = (paymentResult) => {
         dispatch(payOrder(order, paymentResult));
@@ -66,13 +66,13 @@ export default function OrderScreen(props) {
     ) : error ? (
         <MessageBox variant="danger">{error}</MessageBox>
     ) : (
-        <div>
-            <h1>Order { order._id }</h1>
+        <div id='main-panel'>
+            <h1>Order {order._id}</h1>
             <div className="row top">
                 <div className="col-2">
                     <ul>
                         <li>
-                            <div className="card card-body">
+                            <div className="card card-body" style={{ 'font-size': '17px' }}>
                                 <h2>Shipping</h2>
                                 <p>
                                     <strong>Name:</strong> {order.shippingAddress.fullName} <br />
@@ -81,6 +81,7 @@ export default function OrderScreen(props) {
                                     {order.shippingAddress.postalCode},
                                     {order.shippingAddress.country}
                                 </p>
+                                <br></br>
                                 {order.isDelivered ? (
                                     <MessageBox variant="success">
                                         Delivered at {order.deliveredAt}
@@ -91,11 +92,12 @@ export default function OrderScreen(props) {
                             </div>
                         </li>
                         <li>
-                            <div className="card card-body">
+                            <div className="card card-body" style={{ 'font-size': '17px' }}>
                                 <h2>Payment</h2>
                                 <p>
                                     <strong>Method:</strong> {order.paymentMethod}
                                 </p>
+                                <br></br>
                                 {order.isPaid ? (
                                     <MessageBox variant="success">
                                         Paid at {order.paidAt}
@@ -106,35 +108,35 @@ export default function OrderScreen(props) {
                             </div>
                         </li>
                         <li>
-                            <div className="card card-body">
+                            <div className="card card-body" style={{ 'font-size': '17px' }}>
                                 <h2>Order Items</h2>
                                 <ul>
-                        {
-                            order.orderItems.map((item) => (
-                                <li key={item.product}>
-                                    <div className="row">
-                                        <div>
-                                            <img 
-                                            src={item.image} 
-                                            alt={item.name} 
-                                            className="small"
-                                            ></img>
-                                        </div>
-                                        <div className="min-30">
-                                            <Link to={`/product/${item.product}`}>{item.name}</Link>
-                                        </div>
-                                        
-                                        <div>{item.qty} x ${item.price} = ${item.qty * item.price}</div>
-                                    </div>
-                                    </li>
-                                    ))}
+                                    {
+                                        order.orderItems.map((item) => (
+                                            <li key={item.product}>
+                                                <div className="row">
+                                                    <div>
+                                                        <img
+                                                            src={item.image}
+                                                            alt={item.name}
+                                                            className="small"
+                                                        ></img>
+                                                    </div>
+                                                    <div className="min-30">
+                                                        <Link to={`/product/${item.product}`}>{item.name}</Link>
+                                                    </div>
+
+                                                    <div>{item.qty} x ${item.price} = ${item.qty * item.price}</div>
+                                                </div>
+                                            </li>
+                                        ))}
                                 </ul>
                             </div>
                         </li>
                     </ul>
                 </div>
                 <div className="col-1">
-                    <div className="card card-body">
+                    <div className="card card-body" style={{ 'font-size': '17px' }}>
                         <ul>
                             <li>
                                 <h2>Order Summary</h2>
@@ -162,7 +164,7 @@ export default function OrderScreen(props) {
                                     <div><strong>Order Total</strong></div>
                                     <div>
                                         <strong>
-                                        ${order.totalPrice.toFixed(2)}
+                                            ${order.totalPrice.toFixed(2)}
                                         </strong>
                                     </div>
                                 </div>
@@ -173,14 +175,14 @@ export default function OrderScreen(props) {
                                         <LoadingBox></LoadingBox>
                                     ) : (
                                         <>
-                                        {errorPay && (
-                                            <MessageBox variant="danger">{errorPay}</MessageBox>
-                                        )}
-                                        {loadingPay && <LoadingBox></LoadingBox>}
-                                        <PayPalButton
-                                            amount={order.totalPrice}
-                                            onSuccess={successPaymentHandler}
-                                        ></PayPalButton>
+                                            {errorPay && (
+                                                <MessageBox variant="danger">{errorPay}</MessageBox>
+                                            )}
+                                            {loadingPay && <LoadingBox></LoadingBox>}
+                                            <PayPalButton
+                                                amount={order.totalPrice}
+                                                onSuccess={successPaymentHandler}
+                                            ></PayPalButton>
                                         </>
                                     )}
                                 </li>
@@ -189,14 +191,14 @@ export default function OrderScreen(props) {
                                 <li>
                                     {loadingDeliver && <LoadingBox></LoadingBox>}
                                     {errorDeliver && (
-                                    <MessageBox variant="danger">{errorDeliver}</MessageBox>
+                                        <MessageBox variant="danger">{errorDeliver}</MessageBox>
                                     )}
                                     <button
                                         type="button"
                                         className="primary block"
                                         onClick={deliverHandler}
                                     >
-                                    Deliver Order
+                                        Deliver Order
                                     </button>
                                 </li>
                             )}

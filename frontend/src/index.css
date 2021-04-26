@@ -9,7 +9,6 @@ body {
   margin: 0;
   height: 100vh;
   font-size: 1.6rem;
-  /* 16 px */
   font-family: Helvetica, Arial, sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
@@ -38,7 +37,6 @@ header {
 
 main {
   grid-area: main;
-  padding: 1rem;
 }
 
 footer {
@@ -234,7 +232,7 @@ img.small {
 }
 
 img.medium {
-  max-width: 29rem;
+  max-width: 220px;
   width: 100%;
 }
 
@@ -245,9 +243,12 @@ img.large {
 /*Card */
 .card {
   border: 0.1 #c0c0c0 solid;
+  box-shadow: 1px 1px 1px 1px rgb(233, 233, 233);
   background-color: #f8f8f8;
   border-radius: 0.5rem;
   margin: 1rem;
+  font-size: 11px;
+  border: 1px solid white;
 }
 
 .card-body {
@@ -533,4 +534,37 @@ img.large {
 
 .support-users .unread {
   background-color: #f02020;
+}
+
+.felx-left {
+  justify-content: left;
+}
+
+.product-card-name {
+  max-width: 200px;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.card:hover {
+  border-color: black;
+}
+
+#search-main-panel {
+  margin: 5% 5% 5% 5%;
+}
+
+.flex-left {
+  justify-content: left;
+}
+
+#search-filter-selector {
+  padding: 1px;
+  box-shadow: 1px 1px 1px 1px silver;
+}
+
+.text-msg {
+  text-align: left;
+  max-width: 100px;
 }

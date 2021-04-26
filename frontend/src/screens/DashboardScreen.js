@@ -6,23 +6,23 @@ import LoadingBox from '../components/LoadingBox';
 import MessageBox from '../components/MessageBox';
 
 export default function DashboardScreen() {
-const orderSummary = useSelector((state) => state.orderSummary);
+  const orderSummary = useSelector((state) => state.orderSummary);
   const { loading, summary, error } = orderSummary;
   const dispatch = useDispatch();
   useEffect(() => {
     dispatch(summaryOrder());
   }, [dispatch]);
-    return (
-        <div>
+  return (
+    <div>
       <div className="row">
-        <h1>Dashboard</h1>
+        <h1 className='three-rem-title'>Dashboard</h1>
       </div>
       {loading ? (
         <LoadingBox />
       ) : error ? (
         <MessageBox variant="danger">{error}</MessageBox>
       ) : (
-        <>
+        <div id='main-panel' >
           <ul className="row summary">
             <li>
               <div className="summary-title color1">
@@ -92,8 +92,9 @@ const orderSummary = useSelector((state) => state.orderSummary);
               />
             )}
           </div>
-        </>
-      )}
-    </div>
+        </div>
+      )
+      }
+    </div >
   );
 }

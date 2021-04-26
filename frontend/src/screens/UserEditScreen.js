@@ -8,7 +8,7 @@ import MessageBox from '../components/MessageBox';
 import { USER_UPDATE_RESET } from '../constants/userConstants';
 
 export default function UserEditScreen(props) {
-const userId = props.match.params.id;
+  const userId = props.match.params.id;
   const [name, setName] = useState('');
   const [email, setEmail] = useState('');
   const [isSeller, setIsSeller] = useState(false);
@@ -44,68 +44,78 @@ const userId = props.match.params.id;
     e.preventDefault();
     dispatch(updateUser({ _id: userId, name, email, isSeller, isAdmin }));
   };
-    return (
+  return (
+    <div>
+      <form className="form" onSubmit={submitHandler}>
         <div>
-        <form className="form" onSubmit={submitHandler}>
-          <div>
-            <h1>Edit User {name}</h1>
-            {loadingUpdate && <LoadingBox></LoadingBox>}
-            {errorUpdate && (
-              <MessageBox variant="danger">{errorUpdate}</MessageBox>
-            )}
-          </div>
-          {loading ? (
-            <LoadingBox />
-          ) : error ? (
-            <MessageBox variant="danger">{error}</MessageBox>
-          ) : (
-            <>
-              <div>
-                <label htmlFor="name">Name</label>
-                <input
-                  id="name"
-                  type="text"
-                  placeholder="Enter name"
-                  value={name}
-                  onChange={(e) => setName(e.target.value)}
-                ></input>
-              </div>
-              <div>
-                <label htmlFor="email">Email</label>
-                <input
-                  id="email"
-                  type="email"
-                  placeholder="Enter email"
-                  value={email}
-                  onChange={(e) => setEmail(e.target.value)}
-                ></input>
-              </div>
-              <div>
-                <label htmlFor="isSeller">Is Seller</label>
+          <h1>Edit User {name}</h1>
+          {loadingUpdate && <LoadingBox></LoadingBox>}
+          {errorUpdate && (
+            <MessageBox variant="danger">{errorUpdate}</MessageBox>
+          )}
+        </div>
+        {loading ? (
+          <LoadingBox />
+        ) : error ? (
+          <MessageBox variant="danger">{error}</MessageBox>
+        ) : (
+          <>
+            <div>
+              <label htmlFor="name">Name</label>
+              <input
+                id="name"
+                type="text"
+                placeholder="Enter name"
+                value={name}
+                onChange={(e) => setName(e.target.value)}
+              ></input>
+            </div>
+            <div>
+              <label htmlFor="email">Email</label>
+              <input
+                id="email"
+                type="email"
+                placeholder="Enter email"
+                value={email}
+                onChange={(e) => setEmail(e.target.value)}
+              ></input>
+            </div>
+            <br></br>
+            <br></br>
+            <br></br>
+            <label style={{ 'font-size': '20px' }}>Mange Account Access</label>
+            <div>
+              <label htmlFor="isSeller" style={{ 'font-size': '20px' }}>
                 <input
                   id="isSeller"
                   type="checkbox"
                   checked={isSeller}
                   onChange={(e) => setIsSeller(e.target.checked)}
                 ></input>
-              </div>
-              <div>
-                <label htmlFor="isAdmin">Is Admin</label>
+                &nbsp;Seller
+              </label>
+
+            </div>
+            <div>
+              <label htmlFor="isAdmin" style={{ 'font-size': '20px' }}>
                 <input
                   id="isAdmin"
                   type="checkbox"
                   checked={isAdmin}
                   onChange={(e) => setIsAdmin(e.target.checked)}
                 ></input>
-              </div>
-              <div>
-                <button type="submit" className="primary">
-                  Update
+              &nbsp;Admin
+              </label>
+            </div>
+            <br></br>
+            <div>
+              <button type="submit" className="primary">
+                Update
                 </button>
-              </div>
-            </>
-          )}
-        </form>
-      </div>
-    );
-  }
+            </div>
+          </>
+        )}
+      </form>
+    </div>
+  );
+}

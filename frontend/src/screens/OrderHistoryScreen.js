@@ -29,12 +29,12 @@ export default function OrderHistoryScreen(props) {
                                         <table className="table">
                                             <thead>
                                                 <tr>
-                                                    <th class='grid-label-purple'>ID</th>
-                                                    <th class='grid-label-purple'>DATE</th>
-                                                    <th class='grid-label-purple'>TOTAL</th>
-                                                    <th class='grid-label-purple'>PAID</th>
-                                                    <th class='grid-label-purple'>DELIVERED</th>
-                                                    <th class='grid-label-purple'>ACTION</th>
+                                                    <th className='grid-label-purple'>ID</th>
+                                                    <th className='grid-label-purple'>DATE</th>
+                                                    <th className='grid-label-purple'>TOTAL</th>
+                                                    <th className='grid-label-purple'>PAID</th>
+                                                    <th className='grid-label-purple'>DELIVERED</th>
+                                                    <th className='grid-label-purple'>ACTION</th>
                                                 </tr>
                                             </thead>
                                             <tbody>
@@ -66,10 +66,10 @@ export default function OrderHistoryScreen(props) {
                                             }
                                         </div>
                                     </div>
-                                    <div class='float-right' class='info-right'>
+                                    <div className='float-right' className='info-right'>
                                         <div id='tip-label'><strong>Deliver</strong></div>
                                         <br></br>
-                                        <div class='tip-text'>During pandemic delivery may be delayed. If the item is paid and was not delivered within 3 day after the estimated delivery time please contact customer support.</div>
+                                        <div className='tip-text'>During pandemic delivery may be delayed. If the item is paid and was not delivered within 3 day after the estimated delivery time please contact customer support.</div>
                                     </div>
                                 </div>
 
