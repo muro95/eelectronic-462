@@ -1,0 +1,139 @@
+#product-image {
+    width: 400px;
+    height: 500px;
+}
+
+#main-panel {
+    margin-top: 5%;
+    margin-left: 15%;
+    margin-right: 10%;
+}
+
+#left-panel {
+    float: left;
+    /* margin-left: 5%; */
+}
+
+#right-panel {
+    float: left;
+    margin-left: 5%;
+    font-size: 15.5px;
+    width: 50%;
+    font-family: 'initial';
+}
+
+#right-panel th {
+    text-align: left;
+}
+
+#right-panel table {
+    width: 100%;
+}
+
+#hr-divider {
+    height: 4px;
+    background-color: black;
+    width: 30%;
+    float: left;
+}
+
+#product-name {
+    font-size: 25px;
+}
+
+#add-to-cart-btn {
+    width: 100%;
+    border: 2px solid silver;
+    background-color: white;
+    font-size: 17.5px;
+    font-family: 'emoji';
+    font-weight: bold;
+    box-shadow: 1px 1px 1px 1px #eeeeee;
+}
+
+#add-to-cart-btn:hover {
+    background-color: rgb(221, 221, 221);
+}
+
+#right-panel .label {
+    font-size: 17.5px;
+    font-family: 'emoji';
+    font-weight: bold;
+}
+
+#right-panel .label select {
+    font-size: 17.5px;
+    font-family: 'emoji';
+    font-weight: bold;
+    cursor: pointer;
+}
+
+
+#right-panel tr select {
+    font-size: 17.5px;
+    font-family: auto;
+}
+
+.review {
+    margin-left: 5%;
+    margin-right: 5%;
+
+}
+
+.review-name {
+    float: left;
+    padding-right: 5px;
+}
+
+.rating {
+    float: left;
+    width: 100%;
+}
+
+.review-time {
+    color: grey;
+}
+
+.review-body {}
+
+#review-stats {
+    float: left;
+}
+
+#submit-btn {
+    width: 100%;
+    border: 2px solid silver;
+    background-color: white;
+    font-size: 17.5px;
+    font-family: 'emoji';
+    font-weight: bold;
+    align-items: center;
+    text-align: center;
+    height: 200%;
+    box-shadow: 1px 1px 1px 1px #eeeeee;
+}
+
+#submit-btn:hover {
+    background-color: rgb(221, 221, 221);
+}
+
+@media only screen and (max-width: 1300px) {
+    #main-panel {
+        float: none;
+        margin: none;
+    }
+
+    #right-panel {
+        float: none;
+        margin-left: 10%;
+        width: 80%;
+
+    }
+
+    #left-panel {
+        align-items: center;
+        text-align: center;
+        float: none;
+        margin: none;
+    }
+}
