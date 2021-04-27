@@ -8,20 +8,20 @@ import Product from '../components/Product';
 import Rating from '../components/Rating';
 
 export default function SellerScreen(props) {
-    const sellerId = props.match.params.id;
-    const userDetails = useSelector(state => state.userDetails);
-    const { loading, error, user } = userDetails;
+  const sellerId = props.match.params.id;
+  const userDetails = useSelector(state => state.userDetails);
+  const { loading, error, user } = userDetails;
 
-    const productList = useSelector(state => state.productList);
-    const { loading: loadingProducts, error: errorProducts, products } = productList;
+  const productList = useSelector(state => state.productList);
+  const { loading: loadingProducts, error: errorProducts, products } = productList;
 
-    const dispatch = useDispatch();
-    useEffect(() => {
-        dispatch(detailsUser(sellerId))
-        dispatch(listProducts({seller: sellerId}));
-    },[dispatch, sellerId ]);
-    return (
-        <div className="row top">
+  const dispatch = useDispatch();
+  useEffect(() => {
+    dispatch(detailsUser(sellerId))
+    dispatch(listProducts({ seller: sellerId }));
+  }, [dispatch, sellerId]);
+  return (
+    <div className="row top" style={{ 'margin-left': '2.5%' }}>
       <div className="col-1">
         {loading ? (
           <LoadingBox></LoadingBox>
@@ -64,7 +64,7 @@ export default function SellerScreen(props) {
         ) : (
           <>
             {products.length === 0 && <MessageBox>No Product Found</MessageBox>}
-            <div className="row center">
+            <div className="row flex-left">
               {products.map((product) => (
                 <Product key={product._id} product={product}></Product>
               ))}
