@@ -145,7 +145,7 @@ export default function ProductScreen(props) {
                         </div>
                     </div> */}
                     <div>
-                        <Link to="/"><u>Back to result</u></Link>
+                        <Link to="/">&ensp;<u style={{ 'font-size': '15px' }}>Back</u></Link>
                         <section id='main-panel'>
                             <section id='left-panel'>
                                 <img id="product-image" src={product.image} alt={product.name}></img>

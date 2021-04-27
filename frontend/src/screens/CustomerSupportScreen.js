@@ -2,6 +2,7 @@ import React, { useEffect, useRef, useState } from 'react';
 import socketIOClient from 'socket.io-client';
 import { useSelector } from 'react-redux';
 import MessageBox from '../components/MessageBox'
+import './css/CustomerSupportScreen.css'
 
 let allUsers = [];
 let allMessages = [];
@@ -110,7 +111,7 @@ export default function CustomerSupportScreen() {
     }
   };
   return (
-    <div className="row top full-container">
+    <div className="row top full-container" id='customer-support-main-container'>
       <div className="col-1 support-users">
         {users.filter((x) => x._id !== userInfo._id).length === 0 && (
           <MessageBox>No Online User Found</MessageBox>
@@ -139,14 +140,14 @@ export default function CustomerSupportScreen() {
             ))}
         </ul>
       </div>
-      <div className="col-3 support-messages" style={{ 'border-left': '1px solid silver' }}>
+      <div className="col-3 support-messages">
         {!selectedUser._id ? (
           <MessageBox>Select a user to start chat</MessageBox>
         ) : (
-          <div>
-            <div className="row">
+          <>
+            {/* <div className="row" id='customer-support-chatting-with'>
               <strong>Chat with {selectedUser.name} </strong>
-            </div>
+            </div> */}
             <ul ref={uiMessagesRef}>
               {messages.length === 0 && <li>No message.</li>}
               {messages.map((msg, index) => (
@@ -155,7 +156,7 @@ export default function CustomerSupportScreen() {
                 </li>
               ))}
             </ul>
-            <div>
+            <div id='customer-support-chatt-input'>
               <form onSubmit={submitHandler} className="row">
                 <input
                   value={messageBody}
@@ -166,7 +167,7 @@ export default function CustomerSupportScreen() {
                 <button type="submit">Send</button>
               </form>
             </div>
-          </div>
+          </>
         )}
       </div>
     </div>

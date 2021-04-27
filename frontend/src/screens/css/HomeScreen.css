@@ -34,8 +34,8 @@
     margin-right: 20%;
 }
 
-.search:hover #search-input-text {
-    width: 500px;
+#search-input-text {
+    width: 300px;
 }
 
 /* #search-input-text {

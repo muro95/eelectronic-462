@@ -57,7 +57,7 @@ function App() {
   return (
     <BrowserRouter>
       <div className="grid-container">
-        <header className="row">
+        <header className="row" style={{ 'min-width': '900px' }}>
           <div>
             <button
               type="button"
@@ -141,7 +141,7 @@ function App() {
             )}
           </div>
         </header>
-        <aside className={sidebarIsOpen ? 'open' : ''}>
+        {/* <aside className={sidebarIsOpen ? 'open' : ''}>
           <ul className="categories">
             <li>
               <strong>Categories</strong>
@@ -166,6 +166,40 @@ function App() {
                   >
                     {c}
                   </Link>
+                </li>
+              ))
+            )}
+          </ul>
+        </aside> */}
+        <aside className={sidebarIsOpen ? 'open' : ''}>
+          <li id='side-category-label'>
+            <div>
+              <strong >Categories</strong>
+            </div>
+            <button
+              onClick={() => setSidebarIsOpen(false)}
+              className="close-sidebar"
+              type="button"
+            >
+              <i className="fa fa-close"></i>
+            </button>
+          </li>
+          <ul className="categories">
+
+            {loadingCategories ? (
+              <LoadingBox></LoadingBox>
+            ) : errorCategories ? (
+              <MessageBox variant="danger">{errorCategories}</MessageBox>
+            ) : (
+              categories.map((c) => (
+                <li onClick={() => { window.location.href = `/search/category/${c}` }} key={c} className='side-cat-item'>
+                  {/* <Link
+                    to={`/search/category/${c}`}
+                    onClick={() => setSidebarIsOpen(false)}
+                  >
+                    {c}
+                  </Link> */}
+                  {c}
                 </li>
               ))
             )}

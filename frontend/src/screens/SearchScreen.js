@@ -53,7 +53,7 @@ export default function SearchScreen(props) {
                         <MessageBox variant="danger">{error}</MessageBox>
                     ) : (
                         <div>
-                            {products.length} Results
+                            <strong>{products.length}</strong> Results
                         </div>
                     )}
                 <div style={{ 'font-size': '16px' }}>
