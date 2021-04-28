@@ -174,7 +174,7 @@ export default function CartScreen(props) {
             </section >
             <section id='order-summary'>
                 <div id='summary'>
-                    <span id='order-summary-label'>ORDER SUMMARY</span>
+                    <span id='order-summary-label'>Order Summary</span>
                     <br></br>
                     <br></br>
                     <div id='item-label'>
@@ -192,8 +192,8 @@ export default function CartScreen(props) {
                     }
                     <br></br>
                     <div id='total-sub-total'>
-                        <span className='name'>SUBTOTOAL (<strong>{cartItems.reduce((a, c) => a + c.qty, 0)}</strong> items)</span>
-                        <span className='total-sub-total float-right'> <strong>${cartItems.reduce((a, c) => a + c.price * c.qty, 0)}</strong></span>
+                        <span className='name'>SUBTOTAL (<strong>{cartItems.reduce((a, c) => a + c.qty, 0)}</strong> {cartItems.reduce((a, c) => a + c.qty, 0) > 1 ? (<>items</>) : (<>item</>)})</span>
+                        <span className='total-sub-total float-right'> <strong>${cartItems.reduce((a, c) => a + c.price * c.qty, 0).toFixed(2)}</strong></span>
                     </div>
                     <hr className="mt-3 mb-3" />
                     <div id='shipping'>
@@ -209,7 +209,7 @@ export default function CartScreen(props) {
                         TAX
                  </span>
                         <span className='float-right'>
-                            <strong>$0.00</strong>
+                            <strong>${(cartItems.reduce((a, c) => a + c.price * c.qty, 0) * 0.15).toFixed(2)}</strong>
                             {/* {cartItems.reduce((a, c) => a + c.price * c.qty, 0) * 0.00} */}
                         </span>
                     </div>
@@ -219,11 +219,11 @@ export default function CartScreen(props) {
                             TOTAL COST
                  </span>
                         <span className='float-right'>
-                            <strong>${cartItems.reduce((a, c) => a + c.price * c.qty, 0)}</strong>
+                            <strong>${(cartItems.reduce((a, c) => a + c.price * c.qty, 0) + (cartItems.reduce((a, c) => a + c.price * c.qty, 0) * 0.15)).toFixed(2)}</strong>
                         </span>
                     </div>
                     <div id='checkout'>
-                        <button className='check-out' type="button" onClick={checkoutHandler} disabled={cartItems.length === 0}>
+                        <button id='checkout-btn' type="button" onClick={checkoutHandler} disabled={cartItems.length === 0}>
                             <strong>Proceed to Checkout</strong>
                         </button>
                     </div>

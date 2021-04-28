@@ -44,7 +44,7 @@ export default function OrderListScreen(props) {
             ) : error ? (
                 <MessageBox variant="danger">{error}</MessageBox>
             ) : (
-                <>
+                <div id='table-main-container'>
                     <div id='left-container'>
                         <table className="table">
                             <thead>
@@ -72,7 +72,7 @@ export default function OrderListScreen(props) {
                                         </td>
                                         <td>{order.user.name}</td>
                                         <td>{order.createdAt.substring(0, 10)}</td>
-                                        <td>{order.totalPrice.toFixed(2)}</td>
+                                        <td>${order.totalPrice.toFixed(2)}</td>
                                         <td>{order.isPaid ? order.paidAt.substring(0, 10) : 'No'}</td>
                                         <td>{order.isDelivered ? order.deliveredAt.substring(0, 10) : 'No'}</td>
                                         <td>
@@ -112,7 +112,7 @@ export default function OrderListScreen(props) {
                         <br></br>
                         <div className='tip-text'>Once deleted the item will be removed peramntly. There is no guarenteed that the item will be avalible again.</div>
                     </div>
-                </>
+                </div>
             )}
         </div >
         // <div>

@@ -23,7 +23,7 @@ export default function OrderHistoryScreen(props) {
                     :
                     (
                         (
-                            <>
+                            <div id='table-main-container'>
                                 <div style={{ margin: "50px" }}>
                                     <div id='left-container'>
                                         <table className="table">
@@ -42,7 +42,7 @@ export default function OrderHistoryScreen(props) {
                                                     <tr key={order._id}>
                                                         <td>{order._id}</td>
                                                         <td>{order.createdAt.substring(0, 10)}</td>
-                                                        <td>{order.totalPrice.toFixed(2)}</td>
+                                                        <td>${order.totalPrice.toFixed(2)}</td>
                                                         <td>{order.isPaid ? order.paidAt.substring(0, 10) : 'No'}</td>
                                                         <td>{order.isDelivered ? order.deliveredAt.substring(0, 10) : 'No'}</td>
                                                         <td>
@@ -72,8 +72,7 @@ export default function OrderHistoryScreen(props) {
                                         <div className='tip-text'>During pandemic delivery may be delayed. If the item is paid and was not delivered within 3 day after the estimated delivery time please contact customer support.</div>
                                     </div>
                                 </div>
-
-                            </>
+                            </div>
                         )
 
 

@@ -38,6 +38,10 @@
     width: 300px;
 }
 
+.no-hover:hover {
+    border: 1px solid white !important;
+}
+
 /* #search-input-text {
     display: block;
 } */

@@ -26,51 +26,51 @@ export default function ProfileScreen() {
     error: errorUpdate,
     loading: loadingUpdate,
   } = userUpdateProfile;
-    const dispatch = useDispatch();
-    useEffect(() => {
-      if (!user) {
-        dispatch({ type: USER_UPDATE_PROFILE_RESET });
-        dispatch(detailsUser(userInfo._id));
-      } else {
-        setName(user.name);
-        setEmail(user.email);
-        if (user.seller) {
-          setSellerName(user.seller.name);
-          setSellerLogo(user.seller.logo);
-          setSellerDescription(user.seller.description);
-        }
+  const dispatch = useDispatch();
+  useEffect(() => {
+    if (!user) {
+      dispatch({ type: USER_UPDATE_PROFILE_RESET });
+      dispatch(detailsUser(userInfo._id));
+    } else {
+      setName(user.name);
+      setEmail(user.email);
+      if (user.seller) {
+        setSellerName(user.seller.name);
+        setSellerLogo(user.seller.logo);
+        setSellerDescription(user.seller.description);
       }
-    }, [dispatch, userInfo._id, user]);
-    const submitHandler = (e) => {
-      e.preventDefault();
-      if (password !== confirmPassword) {
-        alert('Password and Confirm Password Are Not Matched');
-      } else {
-        dispatch(
-          updateUserProfile({
-            userId: user._id,
-            name,
-            email,
-            password,
-            sellerName,
-            sellerLogo,
-            sellerDescription,
-          })
-        );
-      }
-    };
-    return (
-      <div>
-        <form className="form" onSubmit={submitHandler}>
-          <div>
-            <h1>User Profile</h1>
-          </div>
-          {loading ? (
-            <LoadingBox></LoadingBox>
-          ) : error ? (
-            <MessageBox variant="danger">{error}</MessageBox>
-          ) : (
-            <>
+    }
+  }, [dispatch, userInfo._id, user]);
+  const submitHandler = (e) => {
+    e.preventDefault();
+    if (password !== confirmPassword) {
+      alert('Password and Confirm Password Are Not Matched');
+    } else {
+      dispatch(
+        updateUserProfile({
+          userId: user._id,
+          name,
+          email,
+          password,
+          sellerName,
+          sellerLogo,
+          sellerDescription,
+        })
+      );
+    }
+  };
+  return (
+    <div>
+      <form className="form" onSubmit={submitHandler}>
+        <div>
+          <h1>User Profile</h1>
+        </div>
+        {loading ? (
+          <LoadingBox></LoadingBox>
+        ) : error ? (
+          <MessageBox variant="danger">{error}</MessageBox>
+        ) : (
+          <>
             {loadingUpdate && <LoadingBox></LoadingBox>}
             {errorUpdate && (<MessageBox variant="danger">{errorUpdate}</MessageBox>)}
             {successUpdate && (
@@ -78,45 +78,45 @@ export default function ProfileScreen() {
                 Profile Updated Successfully
               </MessageBox>
             )}
-              <div>
-                <label htmlFor="name">Name</label>
-                <input
-                  id="name"
-                  type="text"
-                  placeholder="Enter name"
-                  value={name}
-                  onChange={(e) => setName(e.target.value)}
-                ></input>
-              </div>
-              <div>
-                <label htmlFor="email">Email</label>
-                <input
-                  id="email"
-                  type="email"
-                  placeholder="Enter email"
-                  value={email}
-                  onChange={(e) => setEmail(e.target.value)}
-                ></input>
-              </div>
-              <div>
-                <label htmlFor="password">Password</label>
-                <input
-                  id="password"
-                  type="password"
-                  placeholder="Enter password"
-                  onChange={(e) => setPassword(e.target.value)}
-                ></input>
-              </div>
-              <div>
-                <label htmlFor="confirmPassword">confirm Password</label>
-                <input
-                  id="confirmPassword"
-                  type="password"
-                  placeholder="Enter confirm password"
-                  onChange={(e) => setConfirmPassword(e.target.value)}
-                ></input>
-              </div>
-              {user.isSeller && (
+            <div>
+              <label htmlFor="name">Name</label>
+              <input
+                id="name"
+                type="text"
+                placeholder="Enter name"
+                value={name}
+                onChange={(e) => setName(e.target.value)}
+              ></input>
+            </div>
+            <div>
+              <label htmlFor="email">Email</label>
+              <input
+                id="email"
+                type="email"
+                placeholder="Enter email"
+                value={email}
+                onChange={(e) => setEmail(e.target.value)}
+              ></input>
+            </div>
+            <div>
+              <label htmlFor="password">Password</label>
+              <input
+                id="password"
+                type="password"
+                placeholder="Enter password"
+                onChange={(e) => setPassword(e.target.value)}
+              ></input>
+            </div>
+            <div>
+              <label htmlFor="confirmPassword">Confirm Password</label>
+              <input
+                id="confirmPassword"
+                type="password"
+                placeholder="Confirm password"
+                onChange={(e) => setConfirmPassword(e.target.value)}
+              ></input>
+            </div>
+            {user.isSeller && (
               <>
                 <h2>Seller</h2>
                 <div>
@@ -151,15 +151,15 @@ export default function ProfileScreen() {
                 </div>
               </>
             )}
-              <div>
-                <label />
-                <button className="primary" type="submit">
-                  Update
+            <div>
+              <label />
+              <button className="primary" type="submit">
+                Update
                 </button>
-              </div>
-            </>
-          )}
-        </form>
-      </div>
-    );
-  }
+            </div>
+          </>
+        )}
+      </form>
+    </div>
+  );
+}

@@ -126,7 +126,16 @@ hr {
 #checkout {
     padding-top: 15px;
     text-align: center;
-    font-size: 19px !important;
+}
+
+#checkout-btn {
+    font-size: 12px;
+}
+
+#checkout-btn:hover {
+    background-color: white;
+    color: black;
+    border-color: slategray;
 }
 
 @media only screen and (max-width: 1100px) {

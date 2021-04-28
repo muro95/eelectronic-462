@@ -27,7 +27,7 @@ export default function UserListScreen(props) {
                     : error ? (
                         <MessageBox variant="danger">{error}</MessageBox>
                     ) : (
-                        <>
+                        <div id='table-main-container'>
                             <div id='left-container'>
                                 <table className="table">
                                     <thead>
@@ -75,7 +75,7 @@ export default function UserListScreen(props) {
                                 <br></br>
                                 <div className='info-right-text'>Here you can manage what the site users to seller or to admin.</div>
                             </div>
-                        </>
+                        </div>
                     )}
         </div>
     );

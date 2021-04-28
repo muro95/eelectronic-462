@@ -72,7 +72,7 @@ export default function OrderScreen(props) {
                 <div className="col-2">
                     <ul>
                         <li>
-                            <div className="card card-body" style={{ 'font-size': '17px' }}>
+                            <div className="card card-body card-no-hover" style={{ 'font-size': '17px' }}>
                                 <h2>Shipping</h2>
                                 <p>
                                     <strong>Name:</strong> {order.shippingAddress.fullName} <br />
@@ -92,7 +92,7 @@ export default function OrderScreen(props) {
                             </div>
                         </li>
                         <li>
-                            <div className="card card-body" style={{ 'font-size': '17px' }}>
+                            <div className="card card-body card-no-hover" style={{ 'font-size': '17px' }}>
                                 <h2>Payment</h2>
                                 <p>
                                     <strong>Method:</strong> {order.paymentMethod}
@@ -108,7 +108,7 @@ export default function OrderScreen(props) {
                             </div>
                         </li>
                         <li>
-                            <div className="card card-body" style={{ 'font-size': '17px' }}>
+                            <div className="card card-body card-no-hover" style={{ 'font-size': '17px' }}>
                                 <h2>Order Items</h2>
                                 <ul>
                                     {
@@ -126,7 +126,7 @@ export default function OrderScreen(props) {
                                                         <Link to={`/product/${item.product}`}>{item.name}</Link>
                                                     </div>
 
-                                                    <div>{item.qty} x ${item.price} = ${item.qty * item.price}</div>
+                                                    <div>{item.qty} x ${item.price.toFixed(2)} = ${(item.qty * item.price).toFixed(2)}</div>
                                                 </div>
                                             </li>
                                         ))}
@@ -136,7 +136,7 @@ export default function OrderScreen(props) {
                     </ul>
                 </div>
                 <div className="col-1">
-                    <div className="card card-body" style={{ 'font-size': '17px' }}>
+                    <div className="card card-body card-no-hover" style={{ 'font-size': '17px' }}>
                         <ul>
                             <li>
                                 <h2>Order Summary</h2>

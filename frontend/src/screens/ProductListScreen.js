@@ -70,8 +70,7 @@ export default function ProductListScreen(props) {
             ) : error ? (
                 <MessageBox variant="danger">{error}</MessageBox>
             ) : (
-
-                <>
+                <div id='table-main-container'>
                     <div id='left-container'>
                         <table className="table">
                             <thead>
@@ -134,7 +133,7 @@ export default function ProductListScreen(props) {
                         <br></br>
                         <div className='tip-text'>Once the item is edited, changes will be take palce immediately within 5 minutes.</div>
                     </div>
-                </>
+                </div>
             )
             }
         </div >

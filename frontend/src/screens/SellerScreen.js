@@ -21,14 +21,14 @@ export default function SellerScreen(props) {
     dispatch(listProducts({ seller: sellerId }));
   }, [dispatch, sellerId]);
   return (
-    <div className="row top" style={{ 'margin-left': '2.5%' }}>
-      <div className="col-1">
+    <div className="row top" style={{ 'margin': '2.5%' }}>
+      <div>
         {loading ? (
           <LoadingBox></LoadingBox>
         ) : error ? (
           <MessageBox variant="danger">{error}</MessageBox>
         ) : (
-          <ul className="card card-body">
+          <ul className="card card-body no-hover">
             <li>
               <div className="row start">
                 <div className="p-1">

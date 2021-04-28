@@ -75,3 +75,7 @@ a:hover {
 #left-container table {
     width: 100%;
 }
+
+#table-main-container {
+    min-width: 1200px;
+}
