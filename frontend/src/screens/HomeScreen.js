@@ -28,7 +28,7 @@ export default function HomeScreen() {
                     Welcome to <br></br>
                     E-Electronic
                 </div>
-                <div class="center azure" id='greet2'>
+                <div className="center azure" id='greet2'>
                     <h5>The World’s Most Affordable Eletronic Components</h5>
                 </div>
             </div>

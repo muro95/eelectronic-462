@@ -54,6 +54,13 @@ export default function ProductScreen(props) {
             alert('Please enter comment and rating');
         }
     };
+    function back() {
+        // console.log(window.history.length)
+        // console.log('ref', document.referrer.indexOf(window.location.host))
+        // console.log(document.referrer)
+
+        // window.history.back();
+    };
     return (
         <div>
             {loading ? (
@@ -145,8 +152,9 @@ export default function ProductScreen(props) {
                         </div>
                     </div> */}
                     <div>
-                        <Link to="/">&ensp;<u style={{ 'font-size': '15px' }}>Back</u></Link>
-                        <section id='main-panel'>
+                        {/* <a onClick={back}>&ensp;<u style={{ 'font-size': '15px' }}>Back</u></a> */}
+                        <div></div>
+                        <section id='main-panel' style={{ 'min-height': '1px' }}>
                             <section id='left-panel'>
                                 <img id="product-image" src={product.image} alt={product.name}></img>
                             </section>
@@ -177,7 +185,7 @@ export default function ProductScreen(props) {
                                                     Quantity
                                                 <select value={qty} onChange={e => setQty(e.target.value)}>
                                                         {
-                                                            [...Array(product.countInStock).keys()].map(
+                                                            [...Array(product.countInStock).keys()].slice(0, 50).map(
                                                                 x => (
                                                                     <option key={x + 1} value={x + 1}>{x + 1} </option>
                                                                 )
@@ -211,12 +219,10 @@ export default function ProductScreen(props) {
                         <div style={{ 'margin-top': '50%' }} id='main-panel'>
                             <hr></hr>
                             <h1 id="reviews">Customer reviews</h1>
-
                             {product.reviews.forEach(review => {
                                 reviewCount[review.rating] += 1;
                             })
                             }
-
                             <br></br>
                             <ul>
                                 <div id='review-stats'>

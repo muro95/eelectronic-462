@@ -14,6 +14,10 @@ export default function CartScreen(props) {
     //get cart from redux store using useSelector
     const cart = useSelector((state) => state.cart);
     const { cartItems } = cart;
+    cart.itemsPrice = cart.cartItems.reduce((a, c) => a + c.qty * c.price, 0);
+    cart.shippingPrice = cart.itemsPrice > 100 ? 0 : 10;
+    cart.taxPrice = 0.15 * cart.itemsPrice
+    cart.totalPrice = cart.itemsPrice + cart.shippingPrice + cart.taxPrice;
     const dispatch = useDispatch();
     useEffect(() => {//when ever use a variable in useEffect, also need to add that variable to the dependecy list of useEffect
         if (productId) {
@@ -153,7 +157,7 @@ export default function CartScreen(props) {
                                         }
                                     >
                                         {
-                                            [...Array(item.countInStock).keys()].map((x) => (
+                                            [...Array(item.countInStock).keys()].slice(0, 500).map((x) => (
                                                 <option key={x + 1} value={x + 1}>
                                                     { x + 1}
                                                 </option>
@@ -161,8 +165,8 @@ export default function CartScreen(props) {
                                     </select>
                                 </div>
                                 </div>
-                                <div className="item attr price">${item.price}</div>
-                                <div className="item attr total">${item.price * item.qty}</div>
+                                <div className="item attr price">${item.price.toFixed(2)}</div>
+                                <div className="item attr total">${(item.price * item.qty).toFixed(2)}</div>
                                 <hr className="mt-2 mb-3" />
                                 <hr className="mt-2 mb-3" />
                                 <hr className="mt-2 mb-3" />
@@ -193,7 +197,7 @@ export default function CartScreen(props) {
                     <br></br>
                     <div id='total-sub-total'>
                         <span className='name'>SUBTOTAL (<strong>{cartItems.reduce((a, c) => a + c.qty, 0)}</strong> {cartItems.reduce((a, c) => a + c.qty, 0) > 1 ? (<>items</>) : (<>item</>)})</span>
-                        <span className='total-sub-total float-right'> <strong>${cartItems.reduce((a, c) => a + c.price * c.qty, 0).toFixed(2)}</strong></span>
+                        <span className='total-sub-total float-right'> <strong>${cart.itemsPrice.toFixed(2)}</strong></span>
                     </div>
                     <hr className="mt-3 mb-3" />
                     <div id='shipping'>
@@ -201,7 +205,7 @@ export default function CartScreen(props) {
                             SHIPPING
                  </span>
                         <span className="float-right">
-                            <strong>$0.00</strong>
+                            <strong>${cart.shippingPrice.toFixed(2)}</strong>
                         </span>
                     </div>
                     <hr className="mt-3 mb-3" />
@@ -209,7 +213,7 @@ export default function CartScreen(props) {
                         TAX
                  </span>
                         <span className='float-right'>
-                            <strong>${(cartItems.reduce((a, c) => a + c.price * c.qty, 0) * 0.15).toFixed(2)}</strong>
+                            <strong>${cart.taxPrice.toFixed(2)}</strong>
                             {/* {cartItems.reduce((a, c) => a + c.price * c.qty, 0) * 0.00} */}
                         </span>
                     </div>
@@ -219,7 +223,7 @@ export default function CartScreen(props) {
                             TOTAL COST
                  </span>
                         <span className='float-right'>
-                            <strong>${(cartItems.reduce((a, c) => a + c.price * c.qty, 0) + (cartItems.reduce((a, c) => a + c.price * c.qty, 0) * 0.15)).toFixed(2)}</strong>
+                            <strong>${cart.totalPrice.toFixed(2)}</strong>
                         </span>
                     </div>
                     <div id='checkout'>
