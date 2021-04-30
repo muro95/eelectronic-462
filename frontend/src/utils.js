@@ -26,6 +26,6 @@ export const ratings = [
         name: '1stars & up', rating: 1,
     },
     {
-        name: 'Any', rating: 0,
+        name: 'Any', rating: -1,
     },
 ];

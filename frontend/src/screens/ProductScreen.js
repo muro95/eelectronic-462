@@ -220,7 +220,7 @@ export default function ProductScreen(props) {
                             <hr></hr>
                             <h1 id="reviews">Customer reviews</h1>
                             {product.reviews.forEach(review => {
-                                reviewCount[review.rating] += 1;
+                                reviewCount[review.rating - 1] += 1;
                             })
                             }
                             <br></br>

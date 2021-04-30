@@ -125,6 +125,7 @@ export default function SearchScreen(props) {
                                         className={`${r.rating}` === `${rating}` ? 'active' : ''}
                                     >
                                         <Rating caption={' & up'} rating={r.rating}></Rating>
+
                                     </Link>
                                 </li>
                             ))}
