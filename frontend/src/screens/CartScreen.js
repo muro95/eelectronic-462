@@ -120,18 +120,21 @@ export default function CartScreen(props) {
             <section id='my-cart'>
                 <div id='title'>Shopping cart</div>
                 <div className="item-container">
-                    <hr className="mt-2 mb-3" />
-                    <hr className="mt-2 mb-3" />
-                    <hr className="mt-2 mb-3" />
-                    <hr className="mt-2 mb-3" />
+                    <div> </div>
+                    <div> </div>
+                    <div> </div>
+                    <div> </div>
+                    <div> </div>
                     <div className="item label" id='detail-label'><strong>PRODUCT DETAILS</strong></div>
                     <div className="item label" id='quantity-label'><strong>QUANTITY</strong></div>
                     <div className="item label" id='price-label'><strong>PRICE</strong></div>
                     <div className="item label" id='total-label'><strong>TOTAL</strong></div>
-                    <hr className="mt-2 mb-3" />
-                    <hr className="mt-2 mb-3" />
-                    <hr className="mt-2 mb-3" />
-                    <hr className="mt-2 mb-3" />
+                    <div> </div>
+                    <div> </div>
+                    <div> </div>
+                    <div> </div>
+                    <div> </div>
+                    <div> </div>
                     {
                         cartItems.map((item) => (
                             <>
@@ -140,11 +143,11 @@ export default function CartScreen(props) {
                                     <div className="description">
                                         <div className='name'><strong>{item.name}</strong></div>
                                         <br></br>
-                                        <div className="id-label">
-                                            <span>Product ID</span>
-                                            <br></br>
-                                            <span id='id'>{item.product}</span>
-                                        </div>
+                                    </div>
+                                    <div className="id-label">
+                                        <span>Product ID</span>
+                                        <br></br>
+                                        <span id='id'>{item.product}</span>
                                     </div>
                                 </div>
                                 <div className="item attr quantity"><div>
@@ -167,10 +170,12 @@ export default function CartScreen(props) {
                                 </div>
                                 <div className="item attr price">${item.price.toFixed(2)}</div>
                                 <div className="item attr total">${(item.price * item.qty).toFixed(2)}</div>
+                                <div className='cart-delete-btn-container'><button type="button" className='cart-delete-btn'>Delete</button></div>
                                 <hr className="mt-2 mb-3" />
                                 <hr className="mt-2 mb-3" />
                                 <hr className="mt-2 mb-3" />
                                 <hr className="mt-2 mb-3" />
+                                <div> </div>
                             </>
                         ))
                     }
