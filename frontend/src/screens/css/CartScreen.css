@@ -50,9 +50,27 @@ hr {
     grid-column: 1 / span 2;
 }
 
-.label {
+#detail-label {
     border-bottom: 1px solid silver;
     border-top: 1px solid silver;
+}
+
+#quantity-label {
+    border-bottom: 1px solid silver;
+    border-top: 1px solid silver;
+}
+
+#price-label {
+    border-bottom: 1px solid silver;
+    border-top: 1px solid silver;
+}
+
+#total-label {
+    border-bottom: 1px solid silver;
+    border-top: 1px solid silver;
+}
+
+.label {
     font-size: 15px;
     font-family: 'Lucida Sans'
 }
